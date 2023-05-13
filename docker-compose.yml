@@ -1,0 +1,54 @@
+services:
+
+# creo el servicio para la base de datos que corre en localhost:5432
+  db:
+    ports:
+      - 5432:5432
+    image: postgres
+    # el nombre del contenedor ser db-back-rakoon
+    container_name: db-back-rakoon
+    restart: always
+    # creo las variables de entorno para poder ingresar
+    environment:
+      POSTGRES_DB: rakoon-db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    #cre un volumen que es un volumen nombrado que luego puese ser usado por varias apps
+    volumes:
+      - db_data_rakoon:/var/lib/postgresql/data
+
+  back:
+    # creo la imagen basandome en el dockerfile que cree
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    container_name: rakoon-back
+    # corre dentro del contenedor lo que esta en el scrip run.sh
+    command: sh run.sh
+    # crea un volumen del proyecto en el directorio de trabajo /code para que los cambios se guarden solos
+    volumes:
+      - ./:/code
+      - ./.m2:/root/.m2
+    # creo las variables de entorno para conectar el back a una db
+    environment:
+      SPRING_JPA_SHOW_SQL: true
+      PG_PASS: postgres
+      PG_HOST: db
+    ports:
+      - 8080:8080
+      - 35729:35729 # este puerto es usado por el servidor de livereload en la aplicación
+    depends_on:
+      - db
+
+# levanto otro contedor para el pgadmin, que corre en el puerto 80, con las credenciales para ingresar
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    ports:
+      - "5123:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@rakoon.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    restart: always
+
+volumes:
+  db_data_rakoon:
