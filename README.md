@@ -17,8 +17,6 @@ Con este es el que van a ejecutar todos los dias despues que hicieron el buil de
 docker compose up
 ```
 
-
-
 ### Para ingresar a la base de datos
 Este comando lo tienen que ejecutar **despues** que levantaron el proyecto, es decir hiciero el up con el docker compose, de otra manera no va a correr.
 ```

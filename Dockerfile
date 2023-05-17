@@ -9,7 +9,3 @@ ENV HOME=/code
 RUN mkdir -p $HOME
 # establesco el directorio de trabajo
 WORKDIR $HOME
-
-# Creating user
-RUN adduser -D user
-USER user
