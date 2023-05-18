@@ -4,3 +4,6 @@ ls
 ls
 ls
 exit
+l
+ls
+exit

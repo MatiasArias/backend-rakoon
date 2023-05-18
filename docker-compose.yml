@@ -25,6 +25,7 @@ services:
     container_name: rakoon-back
     # corre dentro del contenedor lo que esta en el scrip run.sh
     command: sh run.sh
+    working_dir: /code
     # crea un volumen del proyecto en el directorio de trabajo /code para que los cambios se guarden solos
     volumes:
       - ./:/code
