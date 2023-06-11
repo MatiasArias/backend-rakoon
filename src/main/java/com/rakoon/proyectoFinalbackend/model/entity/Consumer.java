@@ -8,19 +8,18 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "users")
+@Table(name = "consumers")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class User {
+public class Consumer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Long userId;
-    private String email;
-    private String password;
-    @Column(name = "date_registration")
-    private LocalDate dateRegistration;
-    @ManyToOne
-    private Consumer consumer;
+    @Column(name = "consumer_id")
+    private Long consumerId;
+    private String name;
+    @Column(name = "last_name")
+    private String lastName;
+    private LocalDate birthdate;
+    private String phone;
 }
