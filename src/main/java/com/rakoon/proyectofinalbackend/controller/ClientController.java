@@ -1,7 +1,7 @@
 package com.rakoon.proyectofinalbackend.controller;
 
-import com.rakoon.proyectofinalbackend.jpa.ClientRepository;
-import com.rakoon.proyectofinalbackend.model.Client;
+import com.rakoon.proyectofinalbackend.repository.ClientRepository;
+import com.rakoon.proyectofinalbackend.model.entity.Client;
 import lombok.AllArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
