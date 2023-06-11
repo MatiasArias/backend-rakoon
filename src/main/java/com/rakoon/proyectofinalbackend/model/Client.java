@@ -1,11 +1,10 @@
-package com.rakoon.proyectoFinalbackend.model;
+package com.rakoon.proyectofinalbackend.model;
 
 import jakarta.persistence.*;
 
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.*;
 
 @Entity
 @Table(name = "client")

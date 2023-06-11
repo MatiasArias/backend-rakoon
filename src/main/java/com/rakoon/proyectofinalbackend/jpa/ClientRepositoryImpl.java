@@ -1,4 +1,4 @@
-package com.rakoon.proyectoFinalbackend.jpa;
+package com.rakoon.proyectofinalbackend.jpa;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

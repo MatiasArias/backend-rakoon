@@ -1,4 +1,4 @@
-package com.rakoon.proyectoFinalbackend.model;
+package com.rakoon.proyectofinalbackend.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

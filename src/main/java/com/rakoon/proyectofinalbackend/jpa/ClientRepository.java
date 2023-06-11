@@ -1,9 +1,7 @@
-package com.rakoon.proyectoFinalbackend.jpa;
+package com.rakoon.proyectofinalbackend.jpa;
 
-import com.rakoon.proyectoFinalbackend.model.Client;
+import com.rakoon.proyectofinalbackend.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
 

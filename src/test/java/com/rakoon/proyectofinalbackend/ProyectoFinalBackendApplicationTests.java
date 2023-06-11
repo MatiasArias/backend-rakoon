@@ -1,4 +1,4 @@
-package com.rakoon.proyectoFinalbackend;
+package com.rakoon.proyectofinalbackend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
