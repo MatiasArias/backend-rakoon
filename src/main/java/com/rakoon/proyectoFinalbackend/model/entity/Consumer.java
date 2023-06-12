@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "consumers")
@@ -20,6 +20,6 @@ public class Consumer {
     private String name;
     @Column(name = "last_name")
     private String lastName;
-    private LocalDate birthdate;
+    private Date birthdate;
     private String phone;
 }

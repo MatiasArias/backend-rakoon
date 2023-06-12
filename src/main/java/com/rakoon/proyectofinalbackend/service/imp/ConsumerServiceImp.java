@@ -24,7 +24,8 @@ public class ConsumerServiceImp implements ConsumerService {
     public ConsumerDto save(ConsumerDto consumerDto) {
         Consumer consumerPersisted = saveConsumer(consumerDto);
         saveUser(consumerDto, consumerPersisted);
-        return modelMapper.map(consumerPersisted, ConsumerDto.class);
+        consumerDto.setUserId(consumerPersisted.getConsumerId());
+        return consumerDto;
     }
 
     private Consumer saveConsumer(ConsumerDto consumerDto) {
