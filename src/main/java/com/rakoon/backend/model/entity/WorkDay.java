@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="workDay")
+@Table(name="work_day")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

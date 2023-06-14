@@ -26,7 +26,8 @@ public class Establishment {
     @ManyToOne
     @JoinColumn(name="id_sector")
     private Sector sector;
-    @OneToMany(mappedBy = "id_work_day", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "id_work_day")
     private List<WorkDay> workDay;
     @JoinColumn(name = "id_information_preferences")
     @OneToOne(fetch = FetchType.LAZY)
