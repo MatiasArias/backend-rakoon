@@ -1,5 +1,5 @@
 ls
-cd src/main/java/com/rakoon/proyectoFinalbackend/
+cd src/main/java/com/rakoon/backend/
 ls
 ls
 ls
