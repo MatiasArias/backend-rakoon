@@ -9,8 +9,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "users")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class User {
     @Id
@@ -21,6 +21,9 @@ public class User {
     private String password;
     @Column(name = "date_registration")
     private Date dateRegistration;
-    @ManyToOne
-    private Consumer consumer;
+    @OneToOne
+    private Consumer consumerProfile;
+    @OneToOne
+    private Establishment establishmentProfile;
+
 }

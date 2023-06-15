@@ -35,7 +35,7 @@ public class ConsumerServiceImp implements ConsumerService {
 
     private void saveUser(ConsumerDto consumerDto, Consumer consumer) {
         User user = modelMapper.map(consumerDto, User.class);
-        user.setConsumer(consumer);
+        user.setConsumerProfile(consumer);
         userService.save(user);
     }
 }
