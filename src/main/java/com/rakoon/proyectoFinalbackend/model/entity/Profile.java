@@ -5,7 +5,5 @@ import jakarta.persistence.*;
 
 @MappedSuperclass
 public abstract class Profile {
-    private String name;
-    private String phone;
 
 }

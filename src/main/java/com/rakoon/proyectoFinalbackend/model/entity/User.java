@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -20,7 +21,7 @@ public class User {
     private String email;
     private String password;
     @Column(name = "date_registration")
-    private Date dateRegistration;
+    private LocalDate dateRegistration;
     @OneToOne
     private Consumer consumerProfile;
     @OneToOne

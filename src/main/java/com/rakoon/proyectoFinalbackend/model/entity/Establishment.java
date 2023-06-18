@@ -16,6 +16,8 @@ public class Establishment extends Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_establishment")
     private Long idEstablishment;
+    private String name;
+    private String phone;
     private String cuit;
 
 }
