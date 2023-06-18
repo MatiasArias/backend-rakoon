@@ -10,6 +10,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 @Service
 public class ConsumerServiceImp implements ConsumerService {
 
@@ -35,6 +37,7 @@ public class ConsumerServiceImp implements ConsumerService {
 
     private void saveUser(ConsumerDto consumerDto, Consumer consumer) {
         User user = modelMapper.map(consumerDto, User.class);
+        user.setDateRegistration(LocalDate.now());
         user.setConsumerProfile(consumer);
         userService.save(user);
     }
