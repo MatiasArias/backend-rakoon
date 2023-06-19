@@ -23,5 +23,7 @@ public class Address {
     private String numberApartment;
     @Column(name="floor")
     private String floor;
-
+    @ManyToOne()
+    @JoinColumn(name="id_city")
+    private City city;
 }
