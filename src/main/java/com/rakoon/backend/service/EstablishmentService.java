@@ -1,6 +1,6 @@
-package com.rakoon.proyectoFinalbackend.service;
+package com.rakoon.backend.service;
 
-import com.rakoon.proyectoFinalbackend.model.views.EstablishmentDto;
+import com.rakoon.backend.model.views.EstablishmentDto;
 
 import java.util.List;
 

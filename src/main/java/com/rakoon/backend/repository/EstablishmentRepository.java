@@ -1,6 +1,6 @@
-package com.rakoon.proyectoFinalbackend.repository;
+package com.rakoon.backend.repository;
 
-import com.rakoon.proyectoFinalbackend.model.entity.Establishment;
+import com.rakoon.backend.model.entity.Establishment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EstablishmentRepository extends JpaRepository<Establishment, Long> {

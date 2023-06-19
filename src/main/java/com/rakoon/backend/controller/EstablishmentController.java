@@ -1,7 +1,7 @@
-package com.rakoon.proyectoFinalbackend.controller;
+package com.rakoon.backend.controller;
 
-import com.rakoon.proyectoFinalbackend.model.views.EstablishmentDto;
-import com.rakoon.proyectoFinalbackend.service.EstablishmentService;
+import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.service.EstablishmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;

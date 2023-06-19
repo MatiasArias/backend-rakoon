@@ -1,9 +1,9 @@
-package com.rakoon.proyectoFinalbackend.service.impl;
+package com.rakoon.backend.service.impl;
 
-import com.rakoon.proyectoFinalbackend.model.entity.Establishment;
-import com.rakoon.proyectoFinalbackend.model.views.EstablishmentDto;
-import com.rakoon.proyectoFinalbackend.repository.EstablishmentRepository;
-import com.rakoon.proyectoFinalbackend.service.EstablishmentService;
+import com.rakoon.backend.model.entity.Establishment;
+import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.repository.EstablishmentRepository;
+import com.rakoon.backend.service.EstablishmentService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
