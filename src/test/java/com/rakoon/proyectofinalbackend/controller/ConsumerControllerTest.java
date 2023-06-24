@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -42,7 +43,7 @@ class ConsumerControllerTest {
     }
 
     @Test
-    void createConsumerTest() throws Exception {
+    void createConsumerSuccessfulTest() throws Exception {
 
         when(consumerService.save(any(ConsumerDto.class))).thenReturn(getConsumerDto());
 
@@ -56,5 +57,26 @@ class ConsumerControllerTest {
         ConsumerDto responseDto = mapper.readValue(responseJson, ConsumerDto.class);
 
         assertEquals(getConsumerDto(), responseDto);
+    }
+
+    @Test
+    void createConsumerInvalidFormatDateBadRequestTest() throws Exception {
+        String jsonInput = "{\"userId\" :\"1\"," +
+                "\"name\": \"Joaquin\"," +
+                "\"lastName\": \"Alvarez\"," +
+                "\"birthdate\": \"20/12/2023\"," +
+                "\"phone\": \"3534225669\"," +
+                "\"email\": \"jalvarez@gmail.com\"," +
+                "\"password\": \"password\"," +
+                "\"dateRegistration\": \"20/12/2023\"" +
+                "}";
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/consumer/create")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(jsonInput))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn();
+
+        assertEquals(HttpStatus.BAD_REQUEST.value(), result.getResponse().getStatus());
     }
 }
