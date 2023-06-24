@@ -1,18 +1,17 @@
 package com.rakoon.proyectofinalbackend.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
-import java.util.Date;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "consumers")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Builder
 public class Consumer extends Profile{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
