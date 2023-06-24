@@ -14,7 +14,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 public class ConsumerDto {
-    @JsonIgnore
     private Long userId;
     private String name;
     private String lastName;
@@ -23,7 +22,7 @@ public class ConsumerDto {
     private String phone;
     private String email;
     private String password;
+    //@JsonIgnore
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
-    @JsonIgnore
     private LocalDate dateRegistration;
 }
