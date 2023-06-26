@@ -20,4 +20,9 @@ public class EstablishmentDto {
     private List<WorkDayDto> workDay;
     private InformationPreferencesDto profile;
     private AddressDto address;
+    private String description;
+    private String profileImage;
+    private String coverImage;
+    private Long idSector;
+    private String addressInput;
 }
