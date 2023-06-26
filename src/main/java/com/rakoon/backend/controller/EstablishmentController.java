@@ -43,10 +43,10 @@ public class EstablishmentController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/update")
     @Operation(summary = "updateEstablishment")
-    public ResponseEntity<HttpStatus> updateEstablishment(@PathVariable Long id, @RequestBody EstablishmentDto establishment) {
-        establishmentService.updateEstablishment(id, establishment);
+    public ResponseEntity<HttpStatus> updateEstablishment( @RequestBody EstablishmentDto establishment) {
+        establishmentService.updateEstablishment(0L, establishment);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
