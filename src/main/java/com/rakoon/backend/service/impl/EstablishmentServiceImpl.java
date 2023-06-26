@@ -77,7 +77,6 @@ public class EstablishmentServiceImpl implements EstablishmentService {
 
     @Override
     public void updateEstablishment(Long id, EstablishmentDto establishment) {
-        System.out.println(establishment);
         Address address = modelMapper.map(
                 addressService.createAddress(parseStringToAddress(establishment.getAddressInput())),
                 Address.class);
