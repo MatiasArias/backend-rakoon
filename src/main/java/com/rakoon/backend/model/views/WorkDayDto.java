@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,4 +17,5 @@ public class WorkDayDto {
     private WorkingDay workingDay;
     private String timePickUpFrom;
     private String timePickUpTo;
+    private WorkDayDto[] workDayDtoList;
 }

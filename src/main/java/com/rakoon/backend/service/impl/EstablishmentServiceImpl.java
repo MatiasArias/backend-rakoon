@@ -8,6 +8,19 @@ import com.rakoon.backend.repository.EstablishmentRepository;
 import com.rakoon.backend.repository.SectorRepository;
 import com.rakoon.backend.service.AddressService;
 import com.rakoon.backend.service.EstablishmentService;
+import com.rakoon.backend.model.entity.Address;
+import com.rakoon.backend.model.entity.Establishment;
+import com.rakoon.backend.model.entity.WorkDay;
+import com.rakoon.backend.model.views.AddressDto;
+import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.model.views.WorkDayDto;
+import com.rakoon.backend.repository.AddressRepository;
+import com.rakoon.backend.repository.EstablishmentRepository;
+import com.rakoon.backend.repository.SectorRepository;
+import com.rakoon.backend.repository.WorkDayRepository;
+import com.rakoon.backend.service.AddressService;
+import com.rakoon.backend.service.EstablishmentService;
+import com.rakoon.backend.service.WorkDayService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -15,6 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -23,7 +37,8 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     private EstablishmentRepository establishmentRepository;
     @Autowired
     private SectorRepository sectorRepository;
-
+    @Autowired
+    private WorkDayRepository workDayRepository;
     @Autowired
     private AddressService addressService;
     private final ModelMapper modelMapper = new ModelMapper();
@@ -79,6 +94,21 @@ public class EstablishmentServiceImpl implements EstablishmentService {
         if(establishment.getDescription()!=null){establishmentToUpdate.setDescription(establishment.getDescription());};
         establishmentRepository.save(establishmentToUpdate);
         log.info("Establishment updated successfully");
+    }
+
+    @Override
+    public void updateWorkDayEstablishment(Long idEstablishment,List<WorkDayDto> workDayList) {
+        establishmentRepository.findById(idEstablishment).ifPresent(establishment -> {
+            establishment.getWorkDay().stream().map(WorkDay::getId).forEach(workDayRepository::deleteById);
+            workDayRepository.findAll().forEach(System.out::println);
+            establishment.setWorkDay(
+                    workDayList.stream().map(workDayDto -> {
+                                WorkDay workDay = workDayRepository.save(modelMapper.map(workDayDto, WorkDay.class));
+                                log.info("WorkDay Created succefully");
+                                return workDay;
+                            }
+                    ).collect(Collectors.toList()));
+        });
     }
 
     private AddressDto parseStringToAddress(String addressString){

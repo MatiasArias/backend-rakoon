@@ -21,4 +21,7 @@ public class WorkDay {
     private String timePickUpFrom;
     @Column(name="time_pick_up_to")
     private String timePickUpTo;
+    @ManyToOne()
+    @JoinColumn(name = "id_establishment")
+    private Establishment establishment;
 }

@@ -26,7 +26,7 @@ public class Establishment {
     @ManyToOne
     @JoinColumn(name="id_sector")
     private Sector sector;
-    @OneToMany()
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "id_work_day")
     private List<WorkDay> workDay;
     @ManyToOne

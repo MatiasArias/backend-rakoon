@@ -2,6 +2,9 @@ package com.rakoon.backend.controller;
 
 import com.rakoon.backend.model.views.EstablishmentDto;
 import com.rakoon.backend.service.EstablishmentService;
+import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.model.views.WorkDayDto;
+import com.rakoon.backend.service.EstablishmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -47,6 +52,12 @@ public class EstablishmentController {
     @Operation(summary = "updateEstablishment")
     public ResponseEntity<HttpStatus> updateEstablishment( @RequestBody EstablishmentDto establishment) {
         establishmentService.updateEstablishment(0L, establishment);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @PutMapping("/update/workday/{id}")
+    @Operation(summary = "updateWorkDayEstablishment")
+    public ResponseEntity<HttpStatus> updateWorkDayEstablishment(@PathVariable("id") Long id, @RequestBody WorkDayDto workDayArray) {
+        establishmentService.updateWorkDayEstablishment(id, new ArrayList<>(Arrays.stream(workDayArray.getWorkDayDtoList()).toList()));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
