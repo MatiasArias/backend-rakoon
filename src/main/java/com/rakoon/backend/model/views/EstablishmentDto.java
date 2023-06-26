@@ -18,7 +18,6 @@ public class EstablishmentDto {
     private String phone;
     private SectorDto sector;
     private List<WorkDayDto> workDay;
-    private InformationPreferencesDto profile;
     private AddressDto address;
     private String description;
     private String profileImage;

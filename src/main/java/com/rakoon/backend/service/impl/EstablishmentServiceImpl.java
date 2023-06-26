@@ -1,11 +1,5 @@
 package com.rakoon.backend.service.impl;
 
-<<<<<<< HEAD:src/main/java/com/rakoon/backend/service/impl/EstablishmentServiceImpl.java
-import com.rakoon.backend.model.entity.Establishment;
-import com.rakoon.backend.model.views.EstablishmentDto;
-import com.rakoon.backend.repository.EstablishmentRepository;
-import com.rakoon.backend.service.EstablishmentService;
-=======
 import com.rakoon.backend.model.entity.Address;
 import com.rakoon.backend.model.entity.Establishment;
 import com.rakoon.backend.model.views.AddressDto;
@@ -14,7 +8,6 @@ import com.rakoon.backend.repository.EstablishmentRepository;
 import com.rakoon.backend.repository.SectorRepository;
 import com.rakoon.backend.service.AddressService;
 import com.rakoon.backend.service.EstablishmentService;
->>>>>>> 352cd87 (Upgrade updateEstablishment):src/main/java/com/rakoon/backend/service/impl/EstablishmentServiceImpl.java
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
