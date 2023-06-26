@@ -26,14 +26,17 @@ public class Establishment {
     @ManyToOne
     @JoinColumn(name="id_sector")
     private Sector sector;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany()
     @JoinColumn(name = "id_work_day")
     private List<WorkDay> workDay;
-    @JoinColumn(name = "id_information_preferences")
-    @OneToOne(fetch = FetchType.LAZY)
-    private InformationPreferences profile;
     @ManyToOne
     @JoinColumn(name="id_address")
     private Address address;
+    @Column(name="description")
+    private String description;
+    @Column(name="profile_image")
+    private String profileImage;
+    @Column(name="cover_image")
+    private String coverImage;
 }
 
