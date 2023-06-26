@@ -1,9 +1,18 @@
 package com.rakoon.backend.service.impl;
 
+<<<<<<< HEAD:src/main/java/com/rakoon/backend/service/impl/AddressServiceImpl.java
 import com.rakoon.backend.model.entity.Address;
 import com.rakoon.backend.model.views.AddressDto;
 import com.rakoon.backend.repository.AddressRepository;
 import com.rakoon.backend.service.AddressService;
+=======
+import com.rakoon.backend.model.entity.Address;
+import com.rakoon.backend.model.entity.City;
+import com.rakoon.backend.model.views.AddressDto;
+import com.rakoon.backend.repository.AddressRepository;
+import com.rakoon.backend.repository.CityRepository;
+import com.rakoon.backend.service.AddressService;
+>>>>>>> 352cd87 (Upgrade updateEstablishment):src/main/java/com/rakoon/backend/service/impl/AddressServiceImpl.java
 import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
@@ -17,12 +26,15 @@ import java.util.List;
 public class AddressServiceImpl implements AddressService {
     @Autowired
     private AddressRepository addressRepository;
+    @Autowired
+    private CityRepository cityRepository;
     private final ModelMapper modelMapper = new ModelMapper();
     private static final String ID_NOT_FOUND = "Address not found - id:";
 
     @Override
     public AddressDto createAddress(AddressDto addressDto) {
         Address address = modelMapper.map(addressDto, Address.class);
+        address.setCity(cityRepository.findOneByName(addressDto.getCity()));
         addressRepository.save(address);
         addressDto = modelMapper.map(address, AddressDto.class);
         log.info("Address created successfully");
