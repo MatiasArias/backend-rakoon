@@ -1,4 +1,4 @@
-package com.rakoon.proyectoFinalbackend;
+package com.rakoon.proyectofinalbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
