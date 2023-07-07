@@ -101,16 +101,17 @@ public class EstablishmentServiceImpl implements EstablishmentService {
         establishmentRepository.findById(idEstablishment).ifPresent(establishment -> {
             establishment.getWorkDay().stream().map(WorkDay::getId).forEach(workDayRepository::deleteById);
             workDayRepository.findAll().forEach(System.out::println);
-            establishment.setWorkDay(
-                    workDayList.stream().map(workDayDto -> {
-                                WorkDay workDay = workDayRepository.save(modelMapper.map(workDayDto, WorkDay.class));
-                                log.info("WorkDay Created succefully");
-                                return workDay;
-                            }
-                    ).collect(Collectors.toList()));
+            establishment.setWorkDay(updateWorkDayList(workDayList));
         });
     }
-
+    public List<WorkDay> updateWorkDayList(List<WorkDayDto> workDayList){
+        return workDayList.stream().map(workDayDto -> {
+                    WorkDay workDay = workDayRepository.save(modelMapper.map(workDayDto, WorkDay.class));
+                    log.info("WorkDay Created succefully");
+                    return workDay;
+                }
+        ).collect(Collectors.toList());
+}
     private AddressDto parseStringToAddress(String addressString){
         String[] splitAddress = addressString.split(",");
         return AddressDto.builder()

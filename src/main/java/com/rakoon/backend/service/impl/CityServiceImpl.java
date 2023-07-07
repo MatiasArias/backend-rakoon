@@ -61,6 +61,11 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public void updateCity(Long id, CityDto cityDto) {
+        cityRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
+                    throw new EntityNotFoundException(ID_NOT_FOUND + id);
+                });
         City cityToUpdate = modelMapper.map(cityDto, City.class);
         cityToUpdate.setId(id);
         cityRepository.save(cityToUpdate);

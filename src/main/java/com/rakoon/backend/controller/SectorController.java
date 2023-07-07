@@ -45,7 +45,7 @@ public class SectorController {
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateSector")
-    public ResponseEntity<HttpStatus> updateSector(@PathVariable Long id, @RequestBody SectorDto sector) {
+    public ResponseEntity<HttpStatus> updateSector(@PathVariable("id") Long id, @RequestBody SectorDto sector) {
         sectorService.updateSector(id, sector);
         return new ResponseEntity<>(HttpStatus.OK);
     }

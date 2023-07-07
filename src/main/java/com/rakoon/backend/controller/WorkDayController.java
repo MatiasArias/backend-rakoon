@@ -45,7 +45,7 @@ public class WorkDayController {
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateWorkDay")
-    public ResponseEntity<HttpStatus> updateWorkDay(@PathVariable Long id, @RequestBody WorkDayDto workDay) {
+    public ResponseEntity<HttpStatus> updateWorkDay(@PathVariable("id") Long id, @RequestBody WorkDayDto workDay) {
         workDayService.updateWorkDay(id, workDay);
         return new ResponseEntity<>(HttpStatus.OK);
     }
