@@ -1,4 +1,4 @@
-package com.rakoon.backend.service.imp;
+package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.repository.UserRepository;
