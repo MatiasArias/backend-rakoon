@@ -3,7 +3,7 @@ package com.rakoon.backend.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.rakoon.backend.model.view.ConsumerDto;
-import com.rakoon.backend.service.imp.ConsumerServiceImp;
+import com.rakoon.backend.service.impl.ConsumerServiceImp;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
