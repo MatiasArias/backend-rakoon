@@ -3,6 +3,7 @@ package com.rakoon.backend.util;
 import com.rakoon.backend.model.entity.Consumer;
 import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.model.view.ConsumerDto;
+import com.rakoon.backend.security.AuthCredentials;
 
 import java.time.LocalDate;
 
@@ -36,6 +37,13 @@ public class TestEntityFactory {
                 .lastName("Alvarez")
                 .birthdate(LocalDate.of(2023,12,12))
                 .phone("3534665665")
+                .build();
+    }
+
+    public static AuthCredentials getAuthCredentials(){
+        return AuthCredentials.builder()
+                .email("jalvarez@gmail.com")
+                .password("rakoon")
                 .build();
     }
 }
