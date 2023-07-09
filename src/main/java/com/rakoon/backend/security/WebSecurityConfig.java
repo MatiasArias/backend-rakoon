@@ -31,7 +31,8 @@ public class WebSecurityConfig {
         return http.csrf().disable()
                 .authorizeRequests().requestMatchers(req ->
                         (req.getRequestURI().contains("signup")
-                                || (req.getMethod().equals(HttpMethod.GET.toString()))))
+                                || (req.getMethod().equals(HttpMethod.GET.toString()))
+                                || req.getRequestURI().contains("/api/consumer/create")))
                 .permitAll()
                 .anyRequest()
                 .authenticated()
