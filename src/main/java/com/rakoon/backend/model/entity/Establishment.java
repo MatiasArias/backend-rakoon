@@ -38,5 +38,7 @@ public class Establishment {
     private String profileImage;
     @Column(name="cover_image")
     private String coverImage;
+    @OneToMany
+    private List<Pack> packs;
 }
 
