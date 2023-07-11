@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "packs")
@@ -32,8 +33,10 @@ public class Pack {
     private double previousPrice;
     @Column(name = "discount_rate")
     private double discountRate;
-    //private State state;
-    //private List<FoodPack> foodPacks;
+    @ManyToOne
+    private State state;
+    @OneToMany
+    private List<FoodPack> foodPacks;
 
     public double getFinalPrince(){
         return previousPrice - (previousPrice * discountRate);
