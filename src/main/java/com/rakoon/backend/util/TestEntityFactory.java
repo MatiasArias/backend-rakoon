@@ -7,7 +7,12 @@ import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.model.entity.WorkDay;
 import com.rakoon.backend.model.entity.WorkingDay;
 import com.rakoon.backend.model.view.ConsumerDto;
+import com.rakoon.backend.model.views.AddressDto;
+import com.rakoon.backend.model.views.CityDto;
 import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.model.views.ProvinceDto;
+import com.rakoon.backend.model.views.SectorDto;
+import com.rakoon.backend.model.views.WorkDayDto;
 import com.rakoon.backend.security.AuthCredentials;
 import com.rakoon.backend.security.UserDetailsImpl;
 import org.springframework.context.annotation.Bean;
@@ -53,45 +58,6 @@ public class TestEntityFactory {
                 .build();
     }
 
-    public static ConsumerDto getConsumerDto(){
-        return ConsumerDto.builder()
-                .userId(1L)
-                .email("jalvarez@gmail.com")
-                .password(password)
-                .dateRegistration(LocalDate.of(2023,12,12))
-                .name("Joaquin")
-                .lastName("Alvarez")
-                .birthdate(LocalDate.of(2023,12,12))
-                .phone("3534665665")
-                .build();
-    }
-
-    public static AuthCredentials getAuthCredentials(){
-        return AuthCredentials.builder()
-                .email("jalvarez@gmail.com")
-                .password("rakoon")
-                .build();
-    }
-    public static Establishment getEstablishment(){
-        return Establishment.builder()
-                .id(1L)
-                .name("Ala manchada")
-                .cuit("2030405060")
-                .description("Description")
-                .phone("154265376")
-                .sector(getSector())
-                .workDay(getWorkDayList())
-                .build();
-    }
-    public static EstablishmentDto getEstablishmentDto(){
-        return EstablishmentDto.builder()
-                .id(1L)
-                .name("Ala manchada")
-                .cuit("2030405060")
-                .description("Description")
-                .phone("154265376")
-                .build();
-    }
     public static Sector getSector(){
         return Sector.builder()
                 .id(1L)
@@ -111,5 +77,82 @@ public class TestEntityFactory {
         List list = new ArrayList<>();
         list.add(getWorkDay());
         return list;
+    }
+
+    public static AuthCredentials getAuthCredentials(){
+        return AuthCredentials.builder()
+                .email("jalvarez@gmail.com")
+                .password("rakoon")
+                .build();
+    }
+    public static Establishment getEstablishment(){
+        return Establishment.builder()
+                .id(1L)
+                .name("Ala manchada")
+                .cuit("2030405060")
+                .description("Description")
+                .phone("154265376")
+                .sector(getSector())
+                .workDay(getWorkDayList())
+                .build();
+    }
+    public static ConsumerDto getConsumerDto(){
+        return ConsumerDto.builder()
+                .userId(1L)
+                .email("jalvarez@gmail.com")
+                .password(password)
+                .dateRegistration(LocalDate.of(2023,12,12))
+                .name("Joaquin")
+                .lastName("Alvarez")
+                .birthdate(LocalDate.of(2023,12,12))
+                .phone("3534665665")
+                .build();
+    }
+    public static EstablishmentDto getEstablishmentDto(){
+        return EstablishmentDto.builder()
+                .id(1L)
+                .name("Ala manchada")
+                .cuit("2030405060")
+                .description("Description")
+                .phone("154265376")
+                .build();
+    }
+    public static SectorDto getSectorDto(){
+        return SectorDto.builder()
+                .id(1L)
+                .name("Restaurant")
+                .description("Description")
+                .build();
+    }
+    public static WorkDayDto getWorkDayDto(){
+        return WorkDayDto.builder()
+                .id(1L)
+                .workingDay(WorkingDay.MONDAY)
+                .timePickUpFrom("10:00")
+                .timePickUpTo("20:00")
+                .build();
+    }
+    public static ProvinceDto getProvinceDto(){
+        return ProvinceDto.builder()
+                .id(1L)
+                .name("Cordoba")
+                .code("CBA")
+                .build();
+    }
+    public static CityDto getCityDto(){
+        return CityDto.builder()
+                .id(1L)
+                .name("Villa Maria")
+                .code("5900")
+                .build();
+    }
+    public static AddressDto getAddressDto(){
+        return AddressDto.builder()
+                .id(1L)
+                .street("Street")
+                .numberStreet("912")
+                .floor("3")
+                .numberApartment("7")
+                .build();
     }
 }
