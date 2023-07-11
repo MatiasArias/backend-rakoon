@@ -37,6 +37,8 @@ public class Pack {
     private State state;
     @OneToMany
     private List<FoodPack> foodPacks;
+    @ManyToOne
+    private TemplatePack template;
 
     public double getFinalPrince(){
         return previousPrice - (previousPrice * discountRate);
