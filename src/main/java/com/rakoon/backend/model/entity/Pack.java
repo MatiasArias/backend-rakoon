@@ -31,6 +31,8 @@ public class Pack {
     private LocalTime limitTimePublication;
     @Column(name = "previous_price")
     private double previousPrice;
+    @Column(name = "actual_price")
+    private double actualPrice;
     @Column(name = "discount_rate")
     private double discountRate;
     @ManyToOne
