@@ -140,8 +140,8 @@ public class EstablishmentServiceTest {
         Long establishmentId = getEstablishment().getId();
         Optional<Establishment> optionalEstablishment = Optional.empty();
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
-
         establishmentService.updateWorkDayEstablishment(establishmentId,getWorkDayDtoList());
+        verify(establishmentRepository, times(1)).save(getEstablishment());
     }
     @Test
     @DisplayName("Update Establishment - WorkDay")
@@ -151,5 +151,6 @@ public class EstablishmentServiceTest {
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
 
         establishmentService.updateWorkDayEstablishment(establishmentId,getWorkDayDtoList());
+        verify(establishmentRepository, times(0)).save(getEstablishment());
     }
 }

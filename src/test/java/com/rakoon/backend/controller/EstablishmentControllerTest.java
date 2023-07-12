@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.rakoon.backend.util.TestEntityFactory.getEstablishmentDto;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -78,7 +77,7 @@ public class EstablishmentControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/establishment/create - Success")
     void testCreateEstablishment() throws Exception {
-        when(establishmentService.createEstablishment(Mockito.eq(getEstablishmentDto()))).thenReturn(getEstablishmentDto());
+        when(establishmentService.createEstablishment(getEstablishmentDto())).thenReturn(getEstablishmentDto());
 
         mockMvc.perform(post("/api/establishment/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -95,7 +94,7 @@ public class EstablishmentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getEstablishmentDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(establishmentService,Mockito.times(1)).updateEstablishment(eq(1L),eq(getEstablishmentDto()));
+        Mockito.verify(establishmentService,Mockito.times(1)).updateEstablishment(1L,getEstablishmentDto());
     }
 
     @Test
@@ -104,6 +103,6 @@ public class EstablishmentControllerTest {
     void testDeleteEstablishment() throws Exception {
         mockMvc.perform(delete("/api/establishment/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(establishmentService,Mockito.times(1)).deleteEstablishment(eq(1L));
+        Mockito.verify(establishmentService,Mockito.times(1)).deleteEstablishment(1L);
     }
 }

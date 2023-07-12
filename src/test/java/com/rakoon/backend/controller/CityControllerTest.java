@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.rakoon.backend.util.TestEntityFactory.getCityDto;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -78,7 +77,7 @@ public class CityControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/city/create - Success")
     void testCreateCity() throws Exception {
-        when(cityService.createCity(Mockito.eq(getCityDto()))).thenReturn(getCityDto());
+        when(cityService.createCity(getCityDto())).thenReturn(getCityDto());
 
         mockMvc.perform(post("/api/city/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -95,7 +94,7 @@ public class CityControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getCityDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(cityService,Mockito.times(1)).updateCity(eq(1L),eq(getCityDto()));
+        Mockito.verify(cityService,Mockito.times(1)).updateCity(1L,getCityDto());
     }
 
     @Test
@@ -104,6 +103,6 @@ public class CityControllerTest {
     void testDeleteCity() throws Exception {
         mockMvc.perform(delete("/api/city/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(cityService,Mockito.times(1)).deleteCity(eq(1L));
+        Mockito.verify(cityService,Mockito.times(1)).deleteCity(1L);
     }
 }

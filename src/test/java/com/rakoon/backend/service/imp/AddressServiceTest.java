@@ -29,7 +29,7 @@ import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class AddressServiceTest {
+class AddressServiceTest {
     @Mock
     private AddressRepository addressRepository;
     @Mock

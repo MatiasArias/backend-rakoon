@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -80,9 +79,9 @@ public class EstablishmentServiceImpl implements EstablishmentService {
             Address address = modelMapper.map(
                     addressService.createAddress(parseStringToAddress(establishment.getAddressInput())),
                     Address.class);
-            if(establishment.getAddressInput()!=null){establishmentToUpdate.setAddress(address);};
-            if(establishment.getIdSector()!=null){establishmentToUpdate.setSector(sectorRepository.getById(establishment.getIdSector()));};
-            if(establishment.getDescription()!=null){establishmentToUpdate.setDescription(establishment.getDescription());};
+            if(establishment.getAddressInput()!=null){establishmentToUpdate.setAddress(address);}
+            if(establishment.getIdSector()!=null){establishmentToUpdate.setSector(sectorRepository.getById(establishment.getIdSector()));}
+            if(establishment.getDescription()!=null){establishmentToUpdate.setDescription(establishment.getDescription());}
             establishmentRepository.save(establishmentToUpdate);
             log.info("Establishment updated successfully");
         }, () -> {
@@ -106,7 +105,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
                     log.info("WorkDay Created succefully");
                     return workDay;
                 }
-        ).collect(Collectors.toList());
+        ).toList();
 }
     private AddressDto parseStringToAddress(String addressString){
         String[] splitAddress = addressString.split(",");

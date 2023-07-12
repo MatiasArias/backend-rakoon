@@ -21,7 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.rakoon.backend.util.TestEntityFactory.getWorkDayDto;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -32,7 +31,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class WorkDayControllerTest {
+class WorkDayControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
@@ -78,7 +77,7 @@ public class WorkDayControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/workday/create - Success")
     void testCreateWorkDay() throws Exception {
-        when(workDayService.createWorkDay(Mockito.eq(getWorkDayDto()))).thenReturn(getWorkDayDto());
+        when(workDayService.createWorkDay(getWorkDayDto())).thenReturn(getWorkDayDto());
 
         mockMvc.perform(post("/api/workday/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -95,7 +94,7 @@ public class WorkDayControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getWorkDayDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(workDayService,Mockito.times(1)).updateWorkDay(eq(1L),eq(getWorkDayDto()));
+        Mockito.verify(workDayService,Mockito.times(1)).updateWorkDay(1L,getWorkDayDto());
     }
 
     @Test
@@ -104,6 +103,6 @@ public class WorkDayControllerTest {
     void testDeleteWorkDay() throws Exception {
         mockMvc.perform(delete("/api/workday/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(workDayService,Mockito.times(1)).deleteWorkDay(eq(1L));
+        Mockito.verify(workDayService,Mockito.times(1)).deleteWorkDay(1L);
     }
 }
