@@ -64,7 +64,7 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void updateAddress(Long id, AddressDto address) {
-        addressRepository.findById(id).ifPresentOrElse(establishmentFind -> {
+        addressRepository.findById(id).ifPresentOrElse(addressFind -> {
             Address addressToUpdate = modelMapper.map(address, Address.class);
             addressRepository.save(addressToUpdate);
             log.info(String.format("Address updated successfully"));
