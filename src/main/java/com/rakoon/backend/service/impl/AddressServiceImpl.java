@@ -64,9 +64,14 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void updateAddress(Long id, AddressDto address) {
-        Address addressToUpdate = modelMapper.map(address, Address.class);
-        addressRepository.save(addressToUpdate);
-        log.info(String.format("Address %s updated successfully"));
+        addressRepository.findById(id).ifPresentOrElse(establishmentFind -> {
+            Address addressToUpdate = modelMapper.map(address, Address.class);
+            addressRepository.save(addressToUpdate);
+            log.info(String.format("Address updated successfully"));
+        }, () -> {
+            log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
+            throw new EntityNotFoundException(ID_NOT_FOUND + id);
+        });
     }
 }
 
