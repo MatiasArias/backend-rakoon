@@ -1,5 +1,6 @@
 package com.rakoon.backend.util;
 
+import com.rakoon.backend.model.entity.Address;
 import com.rakoon.backend.model.entity.Consumer;
 import com.rakoon.backend.model.entity.Establishment;
 import com.rakoon.backend.model.entity.Sector;
@@ -77,6 +78,10 @@ public class TestEntityFactory {
         List list = new ArrayList<>();
         list.add(getWorkDay());
         return list;
+    }public static List<WorkDayDto> getWorkDayDtoList(){
+        List list = new ArrayList<>();
+        list.add(getWorkDayDto());
+        return list;
     }
 
     public static AuthCredentials getAuthCredentials(){
@@ -94,6 +99,7 @@ public class TestEntityFactory {
                 .phone("154265376")
                 .sector(getSector())
                 .workDay(getWorkDayList())
+                .address(getAddress())
                 .build();
     }
     public static ConsumerDto getConsumerDto(){
@@ -115,6 +121,8 @@ public class TestEntityFactory {
                 .cuit("2030405060")
                 .description("Description")
                 .phone("154265376")
+                .address(getAddressDto())
+                .addressInput("Las heras,Villa,Cordoba")
                 .build();
     }
     public static SectorDto getSectorDto(){
@@ -148,6 +156,14 @@ public class TestEntityFactory {
     }
     public static AddressDto getAddressDto(){
         return AddressDto.builder()
+                .id(1L)
+                .street("Street")
+                .numberStreet("912")
+                .floor("3")
+                .numberApartment("7")
+                .build();
+    }public static Address getAddress(){
+        return Address.builder()
                 .id(1L)
                 .street("Street")
                 .numberStreet("912")
