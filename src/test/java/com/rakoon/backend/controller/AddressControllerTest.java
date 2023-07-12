@@ -96,7 +96,6 @@ public class AddressControllerTest {
                 .andExpect(status().isOk());
         Mockito.verify(addressService,Mockito.times(1)).updateAddress(eq(1L),eq(getAddressDto()));
     }
-
     @Test
     @WithMockUser(value = "spring-test")
     @DisplayName("DELETE /api/address/delete/1 - Success")
