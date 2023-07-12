@@ -1,6 +1,7 @@
 package com.rakoon.backend.util;
 
 import com.rakoon.backend.model.entity.Address;
+import com.rakoon.backend.model.entity.City;
 import com.rakoon.backend.model.entity.Consumer;
 import com.rakoon.backend.model.entity.Establishment;
 import com.rakoon.backend.model.entity.Sector;
@@ -149,6 +150,12 @@ public class TestEntityFactory {
     }
     public static CityDto getCityDto(){
         return CityDto.builder()
+                .id(1L)
+                .name("Villa Maria")
+                .code("5900")
+                .build();
+    }public static City getCity(){
+        return City.builder()
                 .id(1L)
                 .name("Villa Maria")
                 .code("5900")
