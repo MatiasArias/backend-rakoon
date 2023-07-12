@@ -19,6 +19,7 @@ public class ProvinceServiceImpl implements ProvinceService {
     @Autowired
     private ProvinceRepository provinceRepository;
     private final ModelMapper modelMapper = new ModelMapper();
+    private static final String ID_NOT_FOUND = "Province not found - id:";
 
     @Override
     public ProvinceDto createProvince(ProvinceDto provinceDto) {
@@ -60,10 +61,15 @@ public class ProvinceServiceImpl implements ProvinceService {
 
     @Override
     public void updateProvince(Long id, ProvinceDto provinceDto) {
+        provinceRepository.findById(id).ifPresentOrElse(establishmentFind -> {
         Province provinceToUpdate = modelMapper.map(provinceDto, Province.class);
         provinceToUpdate.setId(id);
         provinceRepository.save(provinceToUpdate);
         log.info(String.format("Province %s updated successfully", provinceToUpdate.getName()));
+        }, () -> {
+            log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
+            throw new EntityNotFoundException(ID_NOT_FOUND + id);
+        });
     }
 }
 

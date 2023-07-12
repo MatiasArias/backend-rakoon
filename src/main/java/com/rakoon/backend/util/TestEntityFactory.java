@@ -4,6 +4,7 @@ import com.rakoon.backend.model.entity.Address;
 import com.rakoon.backend.model.entity.City;
 import com.rakoon.backend.model.entity.Consumer;
 import com.rakoon.backend.model.entity.Establishment;
+import com.rakoon.backend.model.entity.Province;
 import com.rakoon.backend.model.entity.Sector;
 import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.model.entity.WorkDay;
@@ -143,6 +144,12 @@ public class TestEntityFactory {
     }
     public static ProvinceDto getProvinceDto(){
         return ProvinceDto.builder()
+                .id(1L)
+                .name("Cordoba")
+                .code("CBA")
+                .build();
+    }public static Province getProvince(){
+        return Province.builder()
                 .id(1L)
                 .name("Cordoba")
                 .code("CBA")
