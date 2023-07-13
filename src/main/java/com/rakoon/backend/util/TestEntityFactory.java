@@ -3,11 +3,14 @@ package com.rakoon.backend.util;
 import com.rakoon.backend.model.entity.Consumer;
 import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.model.view.ConsumerDto;
+import com.rakoon.backend.security.AuthCredentials;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 
 public class TestEntityFactory {
 
+    static String password = new BCryptPasswordEncoder().encode("rakoon");
     public static Consumer getConsumer(){
         return Consumer.builder()
                 .consumerId(1L)
@@ -22,7 +25,7 @@ public class TestEntityFactory {
         return User.builder()
                 .userId(1L)
                 .email("jalvarez@gmail.com")
-                .password("rakoon")
+                .password(password)
                 .build();
     }
 
@@ -30,12 +33,19 @@ public class TestEntityFactory {
         return ConsumerDto.builder()
                 .userId(1L)
                 .email("jalvarez@gmail.com")
-                .password("rakoon")
+                .password(password)
                 .dateRegistration(LocalDate.of(2023,12,12))
                 .name("Joaquin")
                 .lastName("Alvarez")
                 .birthdate(LocalDate.of(2023,12,12))
                 .phone("3534665665")
+                .build();
+    }
+
+    public static AuthCredentials getAuthCredentials(){
+        return AuthCredentials.builder()
+                .email("jalvarez@gmail.com")
+                .password("rakoon")
                 .build();
     }
 }
