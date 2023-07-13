@@ -22,8 +22,10 @@ public class PackRepository {
 
     public List<PackCardDto> findAllCardInformationPackages() {
         jdbcTemplate.query(PACK_CARD_INFORMATION, (ResultSetExtractor<ResultSet>) rs -> {
+            long id = 0L;
             while(rs.next()){
                 PackCardDto packCard = new PackCardDto();
+                packCard.setId(id++);
                 packCard.setTemplateName(rs.getString("templateName"));
                 packCard.setTemplateImage(rs.getString("templateImage"));
                 packCard.setEstablishmentName(rs.getString("establishmentName"));

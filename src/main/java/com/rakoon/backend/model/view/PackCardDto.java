@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PackCardDto {
+    private Long id;
     //Template Data
     private String templateName;
     private String templateImage;
