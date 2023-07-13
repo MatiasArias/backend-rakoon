@@ -40,5 +40,7 @@ public class Establishment {
     private String coverImage;
     @OneToMany
     private List<Pack> packs;
+    @OneToMany
+    private List<Valuation> valuations;
 }
 
