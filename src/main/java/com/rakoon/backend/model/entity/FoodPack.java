@@ -19,4 +19,6 @@ public class FoodPack {
     @ManyToOne
     private Food food;
     private Integer quantity;
+    @ManyToOne
+    private Pack pack;
 }
