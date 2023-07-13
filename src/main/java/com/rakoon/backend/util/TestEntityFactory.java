@@ -9,13 +9,7 @@ import com.rakoon.backend.model.entity.Sector;
 import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.model.entity.WorkDay;
 import com.rakoon.backend.model.entity.WorkingDay;
-import com.rakoon.backend.model.view.ConsumerDto;
-import com.rakoon.backend.model.view.AddressDto;
-import com.rakoon.backend.model.view.CityDto;
-import com.rakoon.backend.model.view.EstablishmentDto;
-import com.rakoon.backend.model.view.ProvinceDto;
-import com.rakoon.backend.model.view.SectorDto;
-import com.rakoon.backend.model.view.WorkDayDto;
+import com.rakoon.backend.model.view.*;
 import com.rakoon.backend.security.AuthCredentials;
 import com.rakoon.backend.security.UserDetailsImpl;
 import org.springframework.context.annotation.Bean;
@@ -183,6 +177,22 @@ public class TestEntityFactory {
                 .numberStreet("912")
                 .floor("3")
                 .numberApartment("7")
+                .build();
+    }
+    public static PackCardDto getPackCardDto(){
+        return PackCardDto.builder()
+                .id(1L)
+                .templateName("Pack Sorpresa")
+                .templateImage("url.image.sorpresa")
+                .establishmentName("Ala Manchada")
+                .establishmentProfileImage("url.image.profile")
+                .sectorName("Resto Bar")
+                .qualificationEstablishment(4.3)
+                .timePickUpTo("20:00")
+                .timePickUpFrom("16:00")
+                .packPrice(450.0)
+                .packDiscountRate(12.3)
+                .quantityPacksAvailable(4)
                 .build();
     }
 }
