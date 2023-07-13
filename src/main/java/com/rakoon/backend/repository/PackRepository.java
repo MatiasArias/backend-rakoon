@@ -1,7 +1,6 @@
 package com.rakoon.backend.repository;
 
 import com.rakoon.backend.model.view.PackCardDto;
-import org.springframework.data.jpa.repository.Query;
 import static com.rakoon.backend.util.Query.PACK_CARD_INFORMATION;
 
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +8,6 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +29,7 @@ public class PackRepository {
                 packCard.setEstablishmentName(rs.getString("establishmentName"));
                 packCard.setEstablishmentProfileImage(rs.getString("establishmentProfileImage"));
                 packCard.setSectorName(rs.getString("sectorName"));
+                packCard.setQualificationEstablishment(rs.getInt("qualificationEstablishment"));
                 packCard.setPackPrice(rs.getDouble("packPrice"));
                 packCard.setPackDiscountRate(rs.getDouble("packDiscountRate"));
                 packCard.setQuantityPacksAvailable(rs.getInt("quantityPacksAvailable"));

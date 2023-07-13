@@ -17,6 +17,7 @@ public class PackCardDto {
     private String establishmentName;
     private String establishmentProfileImage;
     private String sectorName;
+    private double qualificationEstablishment;
     //WorkDay Data
     private String timePickUpFrom;
     private String timePickUpTo;

@@ -18,7 +18,9 @@ public class Valuation {
     @Column(name = "id_valuation")
     private Long id;
     private String comment;
-    private Integer stars;
+    private double stars;
+    @ManyToOne
+    private Establishment establishment;
     @ManyToOne
     private Consumer consumer;
 }
