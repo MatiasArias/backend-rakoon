@@ -1,9 +1,8 @@
-package com.rakoon.backend.service.imp;
+package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.WorkDay;
 import com.rakoon.backend.model.view.WorkDayDto;
 import com.rakoon.backend.repository.WorkDayRepository;
-import com.rakoon.backend.service.impl.WorkDayServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,8 @@
-package com.rakoon.backend.service.imp;
+package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.City;
 import com.rakoon.backend.model.view.CityDto;
 import com.rakoon.backend.repository.CityRepository;
-import com.rakoon.backend.service.impl.CityServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

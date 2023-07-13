@@ -1,9 +1,8 @@
-package com.rakoon.backend.service.imp;
+package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.Province;
 import com.rakoon.backend.model.view.ProvinceDto;
 import com.rakoon.backend.repository.ProvinceRepository;
-import com.rakoon.backend.service.impl.ProvinceServiceImpl;
 import jakarta.persistence.EntityNotFoundException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
