@@ -60,8 +60,13 @@ public class WorkDayServiceImpl implements WorkDayService {
 
     @Override
     public void updateWorkDay(Long id, WorkDayDto workDay) {
+        workDayRepository.findById(id).ifPresentOrElse(sectorFind -> {
         WorkDay workDayToUpdate = modelMapper.map(workDay, WorkDay.class);
         workDayRepository.save(workDayToUpdate);
-        log.info(String.format("workDay %s updated successfully"));
+        log.info("workDay updated successfully");
+        }, () -> {
+            log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
+            throw new EntityNotFoundException(ID_NOT_FOUND + id);
+        });
     }
 }

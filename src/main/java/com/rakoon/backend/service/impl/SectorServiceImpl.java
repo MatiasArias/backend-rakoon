@@ -60,8 +60,13 @@ public class SectorServiceImpl implements SectorService {
 
     @Override
     public void updateSector(Long id, SectorDto sector) {
+        sectorRepository.findById(id).ifPresentOrElse(sectorFind -> {
         Sector sectorToUpdate = modelMapper.map(sector, Sector.class);
         sectorRepository.save(sectorToUpdate);
         log.info(String.format("Sector %s updated successfully", sectorToUpdate.getName()));
+        }, () -> {
+            log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
+            throw new EntityNotFoundException(ID_NOT_FOUND + id);
+        });
     }
 }

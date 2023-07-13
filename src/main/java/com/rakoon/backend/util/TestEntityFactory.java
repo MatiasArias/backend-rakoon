@@ -1,16 +1,41 @@
 package com.rakoon.backend.util;
 
+import com.rakoon.backend.model.entity.Address;
+import com.rakoon.backend.model.entity.City;
 import com.rakoon.backend.model.entity.Consumer;
+import com.rakoon.backend.model.entity.Establishment;
+import com.rakoon.backend.model.entity.Province;
+import com.rakoon.backend.model.entity.Sector;
 import com.rakoon.backend.model.entity.User;
+import com.rakoon.backend.model.entity.WorkDay;
+import com.rakoon.backend.model.entity.WorkingDay;
 import com.rakoon.backend.model.view.ConsumerDto;
+import com.rakoon.backend.model.views.AddressDto;
+import com.rakoon.backend.model.views.CityDto;
+import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.model.views.ProvinceDto;
+import com.rakoon.backend.model.views.SectorDto;
+import com.rakoon.backend.model.views.WorkDayDto;
 import com.rakoon.backend.security.AuthCredentials;
+import com.rakoon.backend.security.UserDetailsImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestEntityFactory {
 
     static String password = new BCryptPasswordEncoder().encode("rakoon");
+
+    @Bean
+    public InMemoryUserDetailsManager userDetailsService() {
+        UserDetails user = new UserDetailsImpl(getUserTest());
+        return new InMemoryUserDetailsManager(user);
+    }
     public static Consumer getConsumer(){
         return Consumer.builder()
                 .consumerId(1L)
@@ -28,7 +53,57 @@ public class TestEntityFactory {
                 .password(password)
                 .build();
     }
+    public static User getUserTest(){
+        return User.builder()
+                .userId(912L)
+                .email("spring-test")
+                .password(password)
+                .build();
+    }
 
+    public static Sector getSector(){
+        return Sector.builder()
+                .id(1L)
+                .name("Restaurant")
+                .description("Description")
+                .build();
+    }
+    public static WorkDay getWorkDay(){
+        return WorkDay.builder()
+                .id(1L)
+                .workingDay(WorkingDay.MONDAY)
+                .timePickUpFrom("10:00")
+                .timePickUpTo("20:00")
+                .build();
+    }
+    public static List<WorkDay> getWorkDayList(){
+        List list = new ArrayList<>();
+        list.add(getWorkDay());
+        return list;
+    }public static List<WorkDayDto> getWorkDayDtoList(){
+        List list = new ArrayList<>();
+        list.add(getWorkDayDto());
+        return list;
+    }
+
+    public static AuthCredentials getAuthCredentials(){
+        return AuthCredentials.builder()
+                .email("jalvarez@gmail.com")
+                .password("rakoon")
+                .build();
+    }
+    public static Establishment getEstablishment(){
+        return Establishment.builder()
+                .id(1L)
+                .name("Ala manchada")
+                .cuit("2030405060")
+                .description("Description")
+                .phone("154265376")
+                .sector(getSector())
+                .workDay(getWorkDayList())
+                .address(getAddress())
+                .build();
+    }
     public static ConsumerDto getConsumerDto(){
         return ConsumerDto.builder()
                 .userId(1L)
@@ -41,11 +116,73 @@ public class TestEntityFactory {
                 .phone("3534665665")
                 .build();
     }
-
-    public static AuthCredentials getAuthCredentials(){
-        return AuthCredentials.builder()
-                .email("jalvarez@gmail.com")
-                .password("rakoon")
+    public static EstablishmentDto getEstablishmentDto(){
+        return EstablishmentDto.builder()
+                .id(1L)
+                .name("Ala manchada")
+                .cuit("2030405060")
+                .description("Description")
+                .phone("154265376")
+                .address(getAddressDto())
+                .addressInput("Las heras,Villa,Cordoba")
+                .build();
+    }
+    public static SectorDto getSectorDto(){
+        return SectorDto.builder()
+                .id(1L)
+                .name("Restaurant")
+                .description("Description")
+                .build();
+    }
+    public static WorkDayDto getWorkDayDto(){
+        return WorkDayDto.builder()
+                .id(1L)
+                .workingDay(WorkingDay.MONDAY)
+                .timePickUpFrom("10:00")
+                .timePickUpTo("20:00")
+                .build();
+    }
+    public static ProvinceDto getProvinceDto(){
+        return ProvinceDto.builder()
+                .id(1L)
+                .name("Cordoba")
+                .code("CBA")
+                .build();
+    }public static Province getProvince(){
+        return Province.builder()
+                .id(1L)
+                .name("Cordoba")
+                .code("CBA")
+                .build();
+    }
+    public static CityDto getCityDto(){
+        return CityDto.builder()
+                .id(1L)
+                .name("Villa Maria")
+                .code("5900")
+                .build();
+    }public static City getCity(){
+        return City.builder()
+                .id(1L)
+                .name("Villa Maria")
+                .code("5900")
+                .build();
+    }
+    public static AddressDto getAddressDto(){
+        return AddressDto.builder()
+                .id(1L)
+                .street("Street")
+                .numberStreet("912")
+                .floor("3")
+                .numberApartment("7")
+                .build();
+    }public static Address getAddress(){
+        return Address.builder()
+                .id(1L)
+                .street("Street")
+                .numberStreet("912")
+                .floor("3")
+                .numberApartment("7")
                 .build();
     }
 }
