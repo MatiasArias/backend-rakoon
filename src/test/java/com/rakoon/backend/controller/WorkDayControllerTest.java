@@ -1,7 +1,7 @@
 package com.rakoon.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rakoon.backend.model.views.WorkDayDto;
+import com.rakoon.backend.model.view.WorkDayDto;
 import com.rakoon.backend.service.WorkDayService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

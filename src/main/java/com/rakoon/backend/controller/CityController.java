@@ -1,6 +1,6 @@
 package com.rakoon.backend.controller;
 
-import com.rakoon.backend.model.views.CityDto;
+import com.rakoon.backend.model.view.CityDto;
 import com.rakoon.backend.service.CityService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

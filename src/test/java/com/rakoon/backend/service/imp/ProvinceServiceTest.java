@@ -1,7 +1,7 @@
 package com.rakoon.backend.service.imp;
 
 import com.rakoon.backend.model.entity.Province;
-import com.rakoon.backend.model.views.ProvinceDto;
+import com.rakoon.backend.model.view.ProvinceDto;
 import com.rakoon.backend.repository.ProvinceRepository;
 import com.rakoon.backend.service.impl.ProvinceServiceImpl;
 import jakarta.persistence.EntityNotFoundException;

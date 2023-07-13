@@ -1,7 +1,7 @@
 package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.City;
-import com.rakoon.backend.model.views.CityDto;
+import com.rakoon.backend.model.view.CityDto;
 import com.rakoon.backend.repository.CityRepository;
 import com.rakoon.backend.service.CityService;
 import jakarta.persistence.EntityNotFoundException;

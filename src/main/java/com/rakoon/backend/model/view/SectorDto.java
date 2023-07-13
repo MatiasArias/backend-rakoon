@@ -1,4 +1,4 @@
-package com.rakoon.backend.model.views;
+package com.rakoon.backend.model.view;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProvinceDto {
-        private Long id;
-        private String name;
-        private String code;
- }
+public class SectorDto {
+    private Long id;
+    private String name;
+    private String description;
+}

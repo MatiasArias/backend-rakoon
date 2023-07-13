@@ -1,6 +1,6 @@
 package com.rakoon.backend.controller;
 
-import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.model.view.EstablishmentDto;
 import com.rakoon.backend.service.EstablishmentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

@@ -1,4 +1,4 @@
-package com.rakoon.backend.model.views;
+package com.rakoon.backend.model.view;
 
 import com.rakoon.backend.model.entity.WorkingDay;
 import lombok.AllArgsConstructor;

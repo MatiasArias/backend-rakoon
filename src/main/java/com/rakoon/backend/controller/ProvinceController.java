@@ -1,6 +1,6 @@
 package com.rakoon.backend.controller;
 
-import com.rakoon.backend.model.views.ProvinceDto;
+import com.rakoon.backend.model.view.ProvinceDto;
 import com.rakoon.backend.service.ProvinceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

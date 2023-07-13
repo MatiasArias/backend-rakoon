@@ -1,7 +1,7 @@
 package com.rakoon.backend.service.imp;
 
 import com.rakoon.backend.model.entity.Establishment;
-import com.rakoon.backend.model.views.EstablishmentDto;
+import com.rakoon.backend.model.view.EstablishmentDto;
 import com.rakoon.backend.repository.EstablishmentRepository;
 import com.rakoon.backend.repository.WorkDayRepository;
 import com.rakoon.backend.service.AddressService;

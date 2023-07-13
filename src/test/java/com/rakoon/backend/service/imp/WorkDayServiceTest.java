@@ -1,7 +1,7 @@
 package com.rakoon.backend.service.imp;
 
 import com.rakoon.backend.model.entity.WorkDay;
-import com.rakoon.backend.model.views.WorkDayDto;
+import com.rakoon.backend.model.view.WorkDayDto;
 import com.rakoon.backend.repository.WorkDayRepository;
 import com.rakoon.backend.service.impl.WorkDayServiceImpl;
 import jakarta.persistence.EntityNotFoundException;

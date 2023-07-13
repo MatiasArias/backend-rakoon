@@ -1,7 +1,7 @@
 package com.rakoon.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.rakoon.backend.model.views.CityDto;
+import com.rakoon.backend.model.view.CityDto;
 import com.rakoon.backend.service.CityService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

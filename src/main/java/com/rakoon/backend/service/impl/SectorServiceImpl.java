@@ -1,7 +1,7 @@
 package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.Sector;
-import com.rakoon.backend.model.views.SectorDto;
+import com.rakoon.backend.model.view.SectorDto;
 import com.rakoon.backend.repository.SectorRepository;
 import com.rakoon.backend.service.SectorService;
 import jakarta.persistence.EntityNotFoundException;
