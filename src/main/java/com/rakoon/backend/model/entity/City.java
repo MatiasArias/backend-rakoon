@@ -2,12 +2,14 @@ package com.rakoon.backend.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name="cities")
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class City {

@@ -1,7 +1,6 @@
 package com.rakoon.backend.service;
 
 import com.rakoon.backend.model.views.EstablishmentDto;
-import com.rakoon.backend.model.views.EstablishmentDto;
 import com.rakoon.backend.model.views.WorkDayDto;
 
 import java.util.List;
