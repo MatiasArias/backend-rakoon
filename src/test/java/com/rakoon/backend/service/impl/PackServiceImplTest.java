@@ -32,9 +32,10 @@ class PackServiceImplTest {
     @DisplayName("FindAllCardPack - Success")
     void getPackCardInfo() {
         List<PackCardDto> packCardDtoList = new ArrayList<>();
+        Long idIncrementor = 0L;
         packCardDtoList.add(getPackCardDto());
 
-        when(packRepository.findAllCardInformationPackages()).thenReturn(packCardDtoList);
+        when(packRepository.findAllCardInformationPackages(idIncrementor)).thenReturn(packCardDtoList);
 
         assertEquals(packCardDtoList.size(), packService.getPackCardInfo().size());
     }

@@ -13,9 +13,25 @@ public class PackServiceImpl implements PackService {
 
     @Autowired
     PackRepository packRepository;
+    private Long idIncrementor;
 
     @Override
     public List<PackCardDto> getPackCardInfo() {
-        return packRepository.findAllCardInformationPackages();
+        resetIdIncrementor();
+        return packRepository.findAllCardInformationPackages()
+                .stream()
+                .map(packCardDto -> {
+                    packCardDto.setId(getNextId());
+                    return packCardDto;
+                })
+                .toList();
+    }
+
+    private Long getNextId(){
+        return this.idIncrementor++;
+    }
+
+    private void resetIdIncrementor(){
+        this.idIncrementor = 0L;
     }
 }

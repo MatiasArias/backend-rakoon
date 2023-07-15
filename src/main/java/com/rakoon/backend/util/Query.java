@@ -2,6 +2,22 @@ package com.rakoon.backend.util;
 
 public class Query {
 
-    public static final String PACK_CARD_INFORMATION = "SELECT COUNT(temp.name) as \"quantityPacksAvailable\", temp.name as \"templateName\", getAverageValuations(est.id_establishment) AS \"qualificationEstablishment\", temp.template_image as \"templateImage\", est.name as \"establishmentName\", est.profile_image as \"establishmentProfileImage\", sector.name as \"sectorName\", wd.time_pick_up_from as \"timePickUpFrom\", wd.time_pick_up_to as \"timePickUpTo\", pack.actual_price as \"packPrice\", pack.discount_rate as \"packDiscountRate\" FROM PACKS AS pack INNER JOIN TEMPLATES_PACK AS temp ON pack.template_id = temp.id INNER JOIN ESTABLISHMENTS AS est ON est.id_establishment = pack.ESTABLISHMENT_ID_ESTABLISHMENT INNER JOIN WORK_DAY AS wd ON wd.id_establishment = est.id_establishment INNER JOIN SECTORS as sector ON sector.id_sectors = est.id_sector GROUP BY temp.name, temp.template_image, est.name, est.profile_image, sector.name, wd.time_pick_up_from, wd.time_pick_up_to, pack.actual_price, pack.discount_rate, getAverageValuations(est.id_establishment);";
-
+    public static final String PACK_CARD_INFORMATION = "SELECT new com.rakoon.backend.model.view.PackCardDto(" +
+            "COUNT(temp.name) as quantityPacksAvailable, " +
+            "temp.name as templateName, " +
+            "(SELECT AVG(val.stars) FROM Valuation val WHERE val.establishment.id = est.id) as qualificationEstablishment, " +
+            "temp.templateImage as templateImage, " +
+            "est.name as establishmentName, " +
+            "est.profileImage as establishmentProfileImage, " +
+            "sector.name as sectorName, " +
+            "wd.timePickUpFrom as timePickUpFrom, " +
+            "wd.timePickUpTo as timePickUpTo, " +
+            "pack.actualPrice as packPrice, " +
+            "pack.discountRate as packDiscountRate ) " +
+            "FROM Pack pack " +
+            "INNER JOIN pack.template temp " +
+            "INNER JOIN pack.establishment est " +
+            "INNER JOIN est.workDay wd " +
+            "INNER JOIN est.sector sector " +
+            "GROUP BY temp.name, est.id, est.name, temp.templateImage, est.profileImage, sector.name, wd.timePickUpFrom, wd.timePickUpTo, pack.actualPrice, pack.discountRate";
 }

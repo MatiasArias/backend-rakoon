@@ -192,7 +192,7 @@ public class TestEntityFactory {
                 .timePickUpFrom("16:00")
                 .packPrice(450.0)
                 .packDiscountRate(12.3)
-                .quantityPacksAvailable(4)
+                .quantityPacksAvailable(4L)
                 .build();
     }
 }
