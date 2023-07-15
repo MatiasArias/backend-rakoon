@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -35,7 +34,7 @@ public class ProvinceServiceImpl implements ProvinceService {
         List<Province> provinces = provinceRepository.findAll();
         return provinces.stream()
                 .map(province -> modelMapper.map(province, ProvinceDto.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override

@@ -2,6 +2,10 @@ package com.rakoon.backend.util;
 
 public class Query {
 
+    private Query() {
+        throw new IllegalStateException("Utility class");
+    }
+
     public static final String PACK_CARD_INFORMATION = "SELECT new com.rakoon.backend.model.view.PackCardDto(" +
             "COUNT(temp.name) as quantityPacksAvailable, " +
             "temp.name as templateName, " +

@@ -71,11 +71,11 @@ public class TestEntityFactory {
                 .build();
     }
     public static List<WorkDay> getWorkDayList(){
-        List list = new ArrayList<>();
+        List<WorkDay> list = new ArrayList<>();
         list.add(getWorkDay());
         return list;
     }public static List<WorkDayDto> getWorkDayDtoList(){
-        List list = new ArrayList<>();
+        List<WorkDayDto> list = new ArrayList<>();
         list.add(getWorkDayDto());
         return list;
     }
