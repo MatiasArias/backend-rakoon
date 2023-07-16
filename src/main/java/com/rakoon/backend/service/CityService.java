@@ -5,9 +5,9 @@ import com.rakoon.backend.model.view.CityDto;
 import java.util.List;
 
 public interface CityService {
-    CityDto createCity(CityDto cityDto);
-    List<CityDto> findAllCities();
-    void deleteCity(Long id);
-    CityDto getCityById(Long id);
-    void updateCity(Long id, CityDto cityDto);
+    CityDto create(CityDto cityDto);
+    List<CityDto> findAll();
+    void delete(Long id);
+    CityDto getById(Long id);
+    void update(Long id, CityDto cityDto);
 }

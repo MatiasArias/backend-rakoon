@@ -27,6 +27,6 @@ class UserServiceImpTest {
     void saveUserSuccessfulTest(){
         when(userRepository.save(any(User.class))).thenReturn(getUser());
 
-        assertEquals(getUser(), userServiceImp.save(getUser()));
+        assertEquals(getUser(), userServiceImp.create(getUser()));
     }
 }

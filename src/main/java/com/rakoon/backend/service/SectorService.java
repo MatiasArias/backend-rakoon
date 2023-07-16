@@ -5,9 +5,9 @@ import com.rakoon.backend.model.view.SectorDto;
 import java.util.List;
 
 public interface SectorService {
-    SectorDto createSector(SectorDto sector);
-    List<SectorDto> findAllSectors();
-    void deleteSector(Long id);
-    SectorDto getSectorById(Long id);
-    void updateSector(Long id, SectorDto sector);
+    SectorDto create(SectorDto sector);
+    List<SectorDto> findAll();
+    void delete(Long id);
+    SectorDto getById(Long id);
+    void update(Long id, SectorDto sector);
 }

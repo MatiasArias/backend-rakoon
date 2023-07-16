@@ -66,7 +66,7 @@ public class EstablishmentControllerTest {
     @DisplayName("GET /api/establishment/1 - Success")
     void testEstablishmentById() throws Exception {
 
-        when(establishmentService.getEstablishmentById(1L)).thenReturn(getEstablishmentDto());
+        when(establishmentService.getById(1L)).thenReturn(getEstablishmentDto());
 
         mockMvc.perform(get("/api/establishment/1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -77,7 +77,7 @@ public class EstablishmentControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/establishment/create - Success")
     void testCreateEstablishment() throws Exception {
-        when(establishmentService.createEstablishment(getEstablishmentDto())).thenReturn(getEstablishmentDto());
+        when(establishmentService.create(getEstablishmentDto())).thenReturn(getEstablishmentDto());
 
         mockMvc.perform(post("/api/establishment/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -94,7 +94,7 @@ public class EstablishmentControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getEstablishmentDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(establishmentService,Mockito.times(1)).updateEstablishment(1L,getEstablishmentDto());
+        Mockito.verify(establishmentService,Mockito.times(1)).update(1L,getEstablishmentDto());
     }
 
     @Test
@@ -103,6 +103,6 @@ public class EstablishmentControllerTest {
     void testDeleteEstablishment() throws Exception {
         mockMvc.perform(delete("/api/establishment/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(establishmentService,Mockito.times(1)).deleteEstablishment(1L);
+        Mockito.verify(establishmentService,Mockito.times(1)).delete(1L);
     }
 }

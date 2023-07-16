@@ -21,7 +21,7 @@ public class CityServiceImpl implements CityService {
     private static final String ID_NOT_FOUND = "City not found - id: #";
 
     @Override
-    public CityDto createCity(CityDto cityDto) {
+    public CityDto create(CityDto cityDto) {
         City city = modelMapper.map(cityDto, City.class);
         cityRepository.save(city);
         cityDto = modelMapper.map(city, CityDto.class);
@@ -30,7 +30,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public List<CityDto> findAllCities() {
+    public List<CityDto> findAll() {
         List<City> cities = cityRepository.findAll();
         return cities.stream()
                 .map(city -> modelMapper.map(city, CityDto.class))
@@ -38,7 +38,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public void deleteCity(Long id) {
+    public void delete(Long id) {
         City city = cityRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
@@ -49,7 +49,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public CityDto getCityById(Long id) {
+    public CityDto getById(Long id) {
         City city = cityRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
@@ -59,7 +59,7 @@ public class CityServiceImpl implements CityService {
     }
 
     @Override
-    public void updateCity(Long id, CityDto cityDto) {
+    public void update(Long id, CityDto cityDto) {
         cityRepository.findById(id).ifPresentOrElse(cityFind -> {
         City cityToUpdate = modelMapper.map(cityDto, City.class);
         cityToUpdate.setId(id);

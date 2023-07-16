@@ -58,7 +58,7 @@ public class ProvinceControllerTest {
         List<ProvinceDto> provinces = new ArrayList<>();
         provinces.add(getProvinceDto());
 
-        when(provinceService.findAllProvinces()).thenReturn(provinces);
+        when(provinceService.findAll()).thenReturn(provinces);
 
         mockMvc.perform(get("/api/province"))
                 .andExpect(status().isOk());
@@ -68,7 +68,7 @@ public class ProvinceControllerTest {
     @DisplayName("GET /api/province/1 - Success")
     void testProvinceById() throws Exception {
 
-        when(provinceService.getProvinceById(1L)).thenReturn(getProvinceDto());
+        when(provinceService.getById(1L)).thenReturn(getProvinceDto());
 
         mockMvc.perform(get("/api/province/1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -79,7 +79,7 @@ public class ProvinceControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/province/create - Success")
     void testCreateProvince() throws Exception {
-        when(provinceService.createProvince(Mockito.eq(getProvinceDto()))).thenReturn(getProvinceDto());
+        when(provinceService.create(Mockito.eq(getProvinceDto()))).thenReturn(getProvinceDto());
 
         mockMvc.perform(post("/api/province/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -96,7 +96,7 @@ public class ProvinceControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getProvinceDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(provinceService,Mockito.times(1)).updateProvince(eq(1L),eq(getProvinceDto()));
+        Mockito.verify(provinceService,Mockito.times(1)).update(eq(1L),eq(getProvinceDto()));
     }
 
     @Test
@@ -105,6 +105,6 @@ public class ProvinceControllerTest {
     void testDeleteProvince() throws Exception {
         mockMvc.perform(delete("/api/province/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(provinceService,Mockito.times(1)).deleteProvince(eq(1L));
+        Mockito.verify(provinceService,Mockito.times(1)).delete(eq(1L));
     }
 }

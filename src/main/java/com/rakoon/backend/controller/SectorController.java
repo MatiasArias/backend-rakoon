@@ -21,32 +21,32 @@ public class SectorController {
     @GetMapping
     @Operation(summary = "findAll")
     public ResponseEntity<List<SectorDto>> getSectors() {
-        return new ResponseEntity<>(sectorService.findAllSectors(), HttpStatus.OK);
+        return new ResponseEntity<>(sectorService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "getSectorById")
     public ResponseEntity<SectorDto> getSectorById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(sectorService.getSectorById(id), HttpStatus.OK);
+        return new ResponseEntity<>(sectorService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @Operation(summary = "createSector")
     public ResponseEntity<SectorDto> createSector(@RequestBody SectorDto sector) {
-        return new ResponseEntity<>(sectorService.createSector(sector), HttpStatus.CREATED);
+        return new ResponseEntity<>(sectorService.create(sector), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "deleteSector")
     public ResponseEntity<HttpStatus> deleteSector(@PathVariable("id") Long id) {
-        sectorService.deleteSector(id);
+        sectorService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateSector")
     public ResponseEntity<HttpStatus> updateSector(@PathVariable("id") Long id, @RequestBody SectorDto sector) {
-        sectorService.updateSector(id, sector);
+        sectorService.update(id, sector);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

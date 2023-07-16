@@ -21,32 +21,32 @@ public class WorkDayController {
     @GetMapping
     @Operation(summary = "findAll")
     public ResponseEntity<List<WorkDayDto>> getWorkDays() {
-        return new ResponseEntity<>(workDayService.findAllWorkDays(), HttpStatus.OK);
+        return new ResponseEntity<>(workDayService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "getWorkDayById")
     public ResponseEntity<WorkDayDto> getWorkDayById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(workDayService.getWorkDayById(id), HttpStatus.OK);
+        return new ResponseEntity<>(workDayService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @Operation(summary = "createWorkDay")
     public ResponseEntity<WorkDayDto> createWorkDay(@RequestBody WorkDayDto workDay) {
-        return new ResponseEntity<>(workDayService.createWorkDay(workDay), HttpStatus.CREATED);
+        return new ResponseEntity<>(workDayService.create(workDay), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "deleteWorkDay")
     public ResponseEntity<HttpStatus> deleteWorkDay(@PathVariable("id") Long id) {
-        workDayService.deleteWorkDay(id);
+        workDayService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateWorkDay")
     public ResponseEntity<HttpStatus> updateWorkDay(@PathVariable("id") Long id, @RequestBody WorkDayDto workDay) {
-        workDayService.updateWorkDay(id, workDay);
+        workDayService.update(id, workDay);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

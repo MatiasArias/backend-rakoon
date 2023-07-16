@@ -21,7 +21,7 @@ public class WorkDayServiceImpl implements WorkDayService {
     private static final String ID_NOT_FOUND = "WorkDay not found - id: #";
 
     @Override
-    public WorkDayDto createWorkDay(WorkDayDto workDayDto) {
+    public WorkDayDto create(WorkDayDto workDayDto) {
         WorkDay workDay = modelMapper.map(workDayDto, WorkDay.class);
         workDayRepository.save(workDay);
         workDayDto = modelMapper.map(workDay, WorkDayDto.class);
@@ -30,14 +30,14 @@ public class WorkDayServiceImpl implements WorkDayService {
     }
 
     @Override
-    public List<WorkDayDto> findAllWorkDays() {
+    public List<WorkDayDto> findAll() {
         return workDayRepository.findAll().stream()
                 .map(workDay -> modelMapper.map(workDay, WorkDayDto.class))
                 .toList();
     }
 
     @Override
-    public void deleteWorkDay(Long id) {
+    public void delete(Long id) {
         workDayRepository.findById(id)
                 .ifPresentOrElse(workDayFind -> {
                     workDayRepository.delete(workDayFind);
@@ -49,7 +49,7 @@ public class WorkDayServiceImpl implements WorkDayService {
     }
 
     @Override
-    public WorkDayDto getWorkDayById(Long id) {
+    public WorkDayDto getById(Long id) {
         return workDayRepository.findById(id)
                 .map(workDay -> modelMapper.map(workDay, WorkDayDto.class))
                 .orElseThrow(() -> {
@@ -59,7 +59,7 @@ public class WorkDayServiceImpl implements WorkDayService {
     }
 
     @Override
-    public void updateWorkDay(Long id, WorkDayDto workDay) {
+    public void update(Long id, WorkDayDto workDay) {
         workDayRepository.findById(id).ifPresentOrElse(sectorFind -> {
         WorkDay workDayToUpdate = modelMapper.map(workDay, WorkDay.class);
         workDayRepository.save(workDayToUpdate);

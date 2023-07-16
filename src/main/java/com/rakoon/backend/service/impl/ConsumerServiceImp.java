@@ -25,7 +25,7 @@ public class ConsumerServiceImp implements ConsumerService {
     UserService userService;
 
     @Override
-    public ConsumerDto save(ConsumerDto consumerDto) {
+    public ConsumerDto create(ConsumerDto consumerDto) {
         Consumer consumerPersisted = saveConsumer(consumerDto);
         saveUser(consumerDto, consumerPersisted);
         consumerDto.setUserId(consumerPersisted.getConsumerId());
@@ -42,6 +42,6 @@ public class ConsumerServiceImp implements ConsumerService {
         User user = modelMapper.map(consumerDto, User.class);
         user.setDateRegistration(LocalDate.now());
         user.setConsumerProfile(consumer);
-        userService.save(user);
+        userService.create(user);
     }
 }

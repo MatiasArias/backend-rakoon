@@ -55,7 +55,7 @@ class AddressControllerTest {
         List<AddressDto> addresses = new ArrayList<>();
         addresses.add(getAddressDto());
 
-        when(addressService.findAllAddresses()).thenReturn(addresses);
+        when(addressService.findAll()).thenReturn(addresses);
 
         mockMvc.perform(get("/api/address"))
                 .andExpect(status().isOk());
@@ -65,7 +65,7 @@ class AddressControllerTest {
     @DisplayName("GET /api/address/1 - Success")
     void testAddressById() throws Exception {
 
-        when(addressService.getAddressById(1L)).thenReturn(getAddressDto());
+        when(addressService.getById(1L)).thenReturn(getAddressDto());
 
         mockMvc.perform(get("/api/address/1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -76,7 +76,7 @@ class AddressControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/address/create - Success")
     void testCreateAddress() throws Exception {
-        when(addressService.createAddress(getAddressDto())).thenReturn(getAddressDto());
+        when(addressService.create(getAddressDto())).thenReturn(getAddressDto());
 
         mockMvc.perform(post("/api/address/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -93,7 +93,7 @@ class AddressControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getAddressDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(addressService,Mockito.times(1)).updateAddress(1L,getAddressDto());
+        Mockito.verify(addressService,Mockito.times(1)).update(1L,getAddressDto());
     }
     @Test
     @WithMockUser(value = "spring-test")
@@ -101,6 +101,6 @@ class AddressControllerTest {
     void testDeleteAddress() throws Exception {
         mockMvc.perform(delete("/api/address/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(addressService,Mockito.times(1)).deleteAddress(1L);
+        Mockito.verify(addressService,Mockito.times(1)).delete(1L);
     }
 }

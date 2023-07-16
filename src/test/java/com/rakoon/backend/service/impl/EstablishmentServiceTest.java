@@ -47,7 +47,7 @@ public class EstablishmentServiceTest {
     void testCreateEstablishment() {
         when(establishmentRepository.save(any())).thenReturn(getEstablishment());
 
-        EstablishmentDto createdEstablishment = establishmentService.createEstablishment(getEstablishmentDto());
+        EstablishmentDto createdEstablishment = establishmentService.create(getEstablishmentDto());
 
         assertEquals(getEstablishment().getName(), createdEstablishment.getName());
     }
@@ -72,7 +72,7 @@ public class EstablishmentServiceTest {
         Optional<Establishment> optionalEstablishment = Optional.of(getEstablishment());
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
 
-        establishmentService.deleteEstablishment(establishmentId);
+        establishmentService.delete(establishmentId);
 
         verify(establishmentRepository, times(1)).delete(getEstablishment());
     }
@@ -84,7 +84,7 @@ public class EstablishmentServiceTest {
         Optional<Establishment> optionalEstablishment = Optional.of(getEstablishment());
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
 
-        EstablishmentDto establishmentResult = establishmentService.getEstablishmentById(establishmentId);
+        EstablishmentDto establishmentResult = establishmentService.getById(establishmentId);
 
         assertNotNull(establishmentResult);
         assertEquals(getEstablishmentDto().getName(), establishmentResult.getName());
@@ -98,7 +98,7 @@ public class EstablishmentServiceTest {
         Optional<Establishment> optionalEstablishment = Optional.empty();
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
 
-        assertThrows(EntityNotFoundException.class, () -> establishmentService.getEstablishmentById(establishmentId));
+        assertThrows(EntityNotFoundException.class, () -> establishmentService.getById(establishmentId));
     }
 
     @Test
@@ -108,9 +108,9 @@ public class EstablishmentServiceTest {
         Optional<Establishment> optionalEstablishment = Optional.of(getEstablishment());
         when(establishmentRepository.findById(any())).thenReturn(optionalEstablishment);
         when(establishmentRepository.save(any())).thenReturn(getEstablishment());
-        when(addressService.createAddress(any())).thenReturn(getAddressDto());
+        when(addressService.create(any())).thenReturn(getAddressDto());
 
-        establishmentService.updateEstablishment(establishmentId, getEstablishmentDto());
+        establishmentService.update(establishmentId, getEstablishmentDto());
 
         verify(establishmentRepository, times(1)).save(getEstablishment());
     }
@@ -122,7 +122,7 @@ public class EstablishmentServiceTest {
         Optional<Establishment> optionalEstablishment = Optional.empty();
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
 
-        assertThrows(EntityNotFoundException.class, () -> establishmentService.updateEstablishment(establishmentId, getEstablishmentDto()));
+        assertThrows(EntityNotFoundException.class, () -> establishmentService.update(establishmentId, getEstablishmentDto()));
     }
     @Test
     @DisplayName("Delete Establishment - Establishment not found")
@@ -131,7 +131,7 @@ public class EstablishmentServiceTest {
         Optional<Establishment> optionalEstablishment = Optional.empty();
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
 
-        assertThrows(EntityNotFoundException.class, () -> establishmentService.deleteEstablishment(establishmentId));
+        assertThrows(EntityNotFoundException.class, () -> establishmentService.delete(establishmentId));
     }
     @Test
     @DisplayName("Update Establishment - WorkDay NOT FOUND")

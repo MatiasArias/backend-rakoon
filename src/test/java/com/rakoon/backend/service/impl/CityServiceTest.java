@@ -42,7 +42,7 @@ public class CityServiceTest {
         City city = modelMapper.map(cityDto, City.class);
         when(cityRepository.save(any())).thenReturn(city);
 
-        CityDto createdCity = cityService.createCity(cityDto);
+        CityDto createdCity = cityService.create(cityDto);
 
         assertEquals(city.getName(), createdCity.getName());
     }
@@ -54,7 +54,7 @@ public class CityServiceTest {
         cities.add(getCity());
         when(cityRepository.findAll()).thenReturn(cities);
 
-        List<CityDto> citiesDto = cityService.findAllCities();
+        List<CityDto> citiesDto = cityService.findAll();
 
         assertEquals(cities.size(), citiesDto.size());
         assertEquals(getCity().getName(), citiesDto.get(0).getName());
@@ -67,7 +67,7 @@ public class CityServiceTest {
         Optional<City> optionalCity = Optional.of(getCity());
         when(cityRepository.findById(cityId)).thenReturn(optionalCity);
 
-        cityService.deleteCity(cityId);
+        cityService.delete(cityId);
 
         verify(cityRepository, times(1)).delete(getCity());
     }
@@ -79,7 +79,7 @@ public class CityServiceTest {
         Optional<City> optionalCity = Optional.empty();
         when(cityRepository.findById(cityId)).thenReturn(optionalCity);
 
-        assertThrows(EntityNotFoundException.class, () -> cityService.deleteCity(cityId));
+        assertThrows(EntityNotFoundException.class, () -> cityService.delete(cityId));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class CityServiceTest {
         Optional<City> optionalCity = Optional.of(getCity());
         when(cityRepository.findById(cityId)).thenReturn(optionalCity);
 
-        CityDto cityResult = cityService.getCityById(cityId);
+        CityDto cityResult = cityService.getById(cityId);
 
         assertEquals(getCityDto().getName(), cityResult.getName());
     }
@@ -101,7 +101,7 @@ public class CityServiceTest {
         Optional<City> optionalCity = Optional.empty();
         when(cityRepository.findById(cityId)).thenReturn(optionalCity);
 
-        assertThrows(EntityNotFoundException.class, () -> cityService.getCityById(cityId));
+        assertThrows(EntityNotFoundException.class, () -> cityService.getById(cityId));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class CityServiceTest {
         when(cityRepository.findById(any())).thenReturn(optionalCity);
         when(cityRepository.save(any())).thenReturn(getCity());
 
-        cityService.updateCity(cityId, getCityDto());
+        cityService.update(cityId, getCityDto());
 
         verify(cityRepository, times(1)).save(getCity());
     }
@@ -124,6 +124,6 @@ public class CityServiceTest {
         Optional<City> optionalCity = Optional.empty();
         when(cityRepository.findById(cityId)).thenReturn(optionalCity);
 
-        assertThrows(EntityNotFoundException.class, () -> cityService.updateCity(cityId, getCityDto()));
+        assertThrows(EntityNotFoundException.class, () -> cityService.update(cityId, getCityDto()));
     }
 }

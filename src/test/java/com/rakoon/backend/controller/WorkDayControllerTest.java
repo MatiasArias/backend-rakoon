@@ -56,7 +56,7 @@ class WorkDayControllerTest {
         List<WorkDayDto> workDays = new ArrayList<>();
         workDays.add(getWorkDayDto());
 
-        when(workDayService.findAllWorkDays()).thenReturn(workDays);
+        when(workDayService.findAll()).thenReturn(workDays);
 
         mockMvc.perform(get("/api/workday"))
                 .andExpect(status().isOk());
@@ -66,7 +66,7 @@ class WorkDayControllerTest {
     @DisplayName("GET /api/workday/1 - Success")
     void testWorkDayById() throws Exception {
 
-        when(workDayService.getWorkDayById(1L)).thenReturn(getWorkDayDto());
+        when(workDayService.getById(1L)).thenReturn(getWorkDayDto());
 
         mockMvc.perform(get("/api/workday/1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -77,7 +77,7 @@ class WorkDayControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/workday/create - Success")
     void testCreateWorkDay() throws Exception {
-        when(workDayService.createWorkDay(getWorkDayDto())).thenReturn(getWorkDayDto());
+        when(workDayService.create(getWorkDayDto())).thenReturn(getWorkDayDto());
 
         mockMvc.perform(post("/api/workday/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -94,7 +94,7 @@ class WorkDayControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getWorkDayDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(workDayService,Mockito.times(1)).updateWorkDay(1L,getWorkDayDto());
+        Mockito.verify(workDayService,Mockito.times(1)).update(1L,getWorkDayDto());
     }
 
     @Test
@@ -103,6 +103,6 @@ class WorkDayControllerTest {
     void testDeleteWorkDay() throws Exception {
         mockMvc.perform(delete("/api/workday/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(workDayService,Mockito.times(1)).deleteWorkDay(1L);
+        Mockito.verify(workDayService,Mockito.times(1)).delete(1L);
     }
 }

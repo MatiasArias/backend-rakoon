@@ -56,7 +56,7 @@ public class CityControllerTest {
         List<CityDto> citys = new ArrayList<>();
         citys.add(getCityDto());
 
-        when(cityService.findAllCities()).thenReturn(citys);
+        when(cityService.findAll()).thenReturn(citys);
 
         mockMvc.perform(get("/api/city"))
                 .andExpect(status().isOk());
@@ -66,7 +66,7 @@ public class CityControllerTest {
     @DisplayName("GET /api/city/1 - Success")
     void testCityById() throws Exception {
 
-        when(cityService.getCityById(1L)).thenReturn(getCityDto());
+        when(cityService.getById(1L)).thenReturn(getCityDto());
 
         mockMvc.perform(get("/api/city/1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -77,7 +77,7 @@ public class CityControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/city/create - Success")
     void testCreateCity() throws Exception {
-        when(cityService.createCity(getCityDto())).thenReturn(getCityDto());
+        when(cityService.create(getCityDto())).thenReturn(getCityDto());
 
         mockMvc.perform(post("/api/city/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -94,7 +94,7 @@ public class CityControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getCityDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(cityService,Mockito.times(1)).updateCity(1L,getCityDto());
+        Mockito.verify(cityService,Mockito.times(1)).update(1L,getCityDto());
     }
 
     @Test
@@ -103,6 +103,6 @@ public class CityControllerTest {
     void testDeleteCity() throws Exception {
         mockMvc.perform(delete("/api/city/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(cityService,Mockito.times(1)).deleteCity(1L);
+        Mockito.verify(cityService,Mockito.times(1)).delete(1L);
     }
 }

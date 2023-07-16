@@ -42,7 +42,7 @@ public class SectorServiceTest {
         Sector sector = modelMapper.map(sectorDto, Sector.class);
         when(sectorRepository.save(any())).thenReturn(sector);
 
-        SectorDto createdSector = sectorService.createSector(sectorDto);
+        SectorDto createdSector = sectorService.create(sectorDto);
 
         assertEquals(sector.getName(), createdSector.getName());
     }
@@ -54,7 +54,7 @@ public class SectorServiceTest {
         sectors.add(getSector());
         when(sectorRepository.findAll()).thenReturn(sectors);
 
-        List<SectorDto> sectorsDto = sectorService.findAllSectors();
+        List<SectorDto> sectorsDto = sectorService.findAll();
 
         assertEquals(sectors.size(), sectorsDto.size());
         assertEquals(getSector().getName(), sectorsDto.get(0).getName());
@@ -67,7 +67,7 @@ public class SectorServiceTest {
         Optional<Sector> optionalSector = Optional.of(getSector());
         when(sectorRepository.findById(sectorId)).thenReturn(optionalSector);
 
-        sectorService.deleteSector(sectorId);
+        sectorService.delete(sectorId);
 
         verify(sectorRepository, times(1)).delete(getSector());
     }
@@ -79,7 +79,7 @@ public class SectorServiceTest {
         Optional<Sector> optionalSector = Optional.empty();
         when(sectorRepository.findById(sectorId)).thenReturn(optionalSector);
 
-        assertThrows(EntityNotFoundException.class, () -> sectorService.deleteSector(sectorId));
+        assertThrows(EntityNotFoundException.class, () -> sectorService.delete(sectorId));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class SectorServiceTest {
         Optional<Sector> optionalSector = Optional.of(getSector());
         when(sectorRepository.findById(sectorId)).thenReturn(optionalSector);
 
-        SectorDto sectorResult = sectorService.getSectorById(sectorId);
+        SectorDto sectorResult = sectorService.getById(sectorId);
 
         assertEquals(getSectorDto().getName(), sectorResult.getName());
     }
@@ -101,7 +101,7 @@ public class SectorServiceTest {
         Optional<Sector> optionalSector = Optional.empty();
         when(sectorRepository.findById(sectorId)).thenReturn(optionalSector);
 
-        assertThrows(EntityNotFoundException.class, () -> sectorService.getSectorById(sectorId));
+        assertThrows(EntityNotFoundException.class, () -> sectorService.getById(sectorId));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class SectorServiceTest {
         when(sectorRepository.findById(any())).thenReturn(optionalSector);
         when(sectorRepository.save(any())).thenReturn(getSector());
 
-        sectorService.updateSector(sectorId, getSectorDto());
+        sectorService.update(sectorId, getSectorDto());
 
         verify(sectorRepository, times(1)).save(getSector());
     }
@@ -124,6 +124,6 @@ public class SectorServiceTest {
         Optional<Sector> optionalSector = Optional.empty();
         when(sectorRepository.findById(sectorId)).thenReturn(optionalSector);
 
-        assertThrows(EntityNotFoundException.class, () -> sectorService.updateSector(sectorId, getSectorDto()));
+        assertThrows(EntityNotFoundException.class, () -> sectorService.update(sectorId, getSectorDto()));
     }
 }

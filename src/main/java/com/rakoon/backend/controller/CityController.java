@@ -21,32 +21,32 @@ public class CityController {
     @GetMapping
     @Operation(summary = "findAll")
     public ResponseEntity<List<CityDto>> getCities() {
-        return new ResponseEntity<>(cityService.findAllCities(), HttpStatus.OK);
+        return new ResponseEntity<>(cityService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "getCityById")
     public ResponseEntity<CityDto> getCityById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(cityService.getCityById(id), HttpStatus.OK);
+        return new ResponseEntity<>(cityService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @Operation(summary = "createCity")
     public ResponseEntity<CityDto> createCity(@RequestBody CityDto city) {
-        return new ResponseEntity<>(cityService.createCity(city), HttpStatus.CREATED);
+        return new ResponseEntity<>(cityService.create(city), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "deleteCity")
     public ResponseEntity<HttpStatus> deleteCity(@PathVariable("id") Long id) {
-        cityService.deleteCity(id);
+        cityService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateCity")
     public ResponseEntity<HttpStatus> updateCity(@PathVariable("id") Long id, @RequestBody CityDto city) {
-        cityService.updateCity(id, city);
+        cityService.update(id, city);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

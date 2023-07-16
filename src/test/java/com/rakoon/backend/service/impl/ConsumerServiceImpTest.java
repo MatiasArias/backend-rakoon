@@ -35,11 +35,11 @@ class ConsumerServiceImpTest {
     @Test
     void saveConsumerAndUserSuccessful() {
         when(consumerRepository.save(any(Consumer.class))).thenReturn(getConsumer());
-        when(userService.save(any(User.class))).thenReturn(getUser());
+        when(userService.create(any(User.class))).thenReturn(getUser());
 
         assertAll(() ->{
-            assertEquals(getConsumerDto(), consumerService.save(getConsumerDto()));
-            assertEquals(getUser(), userService.save(getUser()));
+            assertEquals(getConsumerDto(), consumerService.create(getConsumerDto()));
+            assertEquals(getUser(), userService.create(getUser()));
         });
     }
 
@@ -51,11 +51,11 @@ class ConsumerServiceImpTest {
         user.setUserId(2L);
 
         when(consumerRepository.save(any(Consumer.class))).thenReturn(getConsumer());
-        when(userService.save(any(User.class))).thenReturn(getUser());
+        when(userService.create(any(User.class))).thenReturn(getUser());
 
         assertAll(() ->{
-            assertNotEquals(consumer, consumerService.save(getConsumerDto()));
-            assertNotEquals(user, userService.save(getUser()));
+            assertNotEquals(consumer, consumerService.create(getConsumerDto()));
+            assertNotEquals(user, userService.create(getUser()));
         });
     }
 }

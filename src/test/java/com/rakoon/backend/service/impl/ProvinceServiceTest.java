@@ -42,7 +42,7 @@ public class ProvinceServiceTest {
         Province province = modelMapper.map(provinceDto, Province.class);
         when(provinceRepository.save(any())).thenReturn(province);
 
-        ProvinceDto createdProvince = provinceService.createProvince(provinceDto);
+        ProvinceDto createdProvince = provinceService.create(provinceDto);
 
         assertEquals(province.getName(), createdProvince.getName());
     }
@@ -54,7 +54,7 @@ public class ProvinceServiceTest {
         provinces.add(getProvince());
         when(provinceRepository.findAll()).thenReturn(provinces);
 
-        List<ProvinceDto> provincesDto = provinceService.findAllProvinces();
+        List<ProvinceDto> provincesDto = provinceService.findAll();
 
         assertEquals(provinces.size(), provincesDto.size());
         assertEquals(getProvince().getName(), provincesDto.get(0).getName());
@@ -67,7 +67,7 @@ public class ProvinceServiceTest {
         Optional<Province> optionalProvince = Optional.of(getProvince());
         when(provinceRepository.findById(provinceId)).thenReturn(optionalProvince);
 
-        provinceService.deleteProvince(provinceId);
+        provinceService.delete(provinceId);
 
         verify(provinceRepository, times(1)).delete(getProvince());
     }
@@ -79,7 +79,7 @@ public class ProvinceServiceTest {
         Optional<Province> optionalProvince = Optional.empty();
         when(provinceRepository.findById(provinceId)).thenReturn(optionalProvince);
 
-        assertThrows(EntityNotFoundException.class, () -> provinceService.deleteProvince(provinceId));
+        assertThrows(EntityNotFoundException.class, () -> provinceService.delete(provinceId));
     }
 
     @Test
@@ -89,7 +89,7 @@ public class ProvinceServiceTest {
         Optional<Province> optionalProvince = Optional.of(getProvince());
         when(provinceRepository.findById(provinceId)).thenReturn(optionalProvince);
 
-        ProvinceDto provinceResult = provinceService.getProvinceById(provinceId);
+        ProvinceDto provinceResult = provinceService.getById(provinceId);
 
         assertEquals(getProvinceDto().getName(), provinceResult.getName());
     }
@@ -101,7 +101,7 @@ public class ProvinceServiceTest {
         Optional<Province> optionalProvince = Optional.empty();
         when(provinceRepository.findById(provinceId)).thenReturn(optionalProvince);
 
-        assertThrows(EntityNotFoundException.class, () -> provinceService.getProvinceById(provinceId));
+        assertThrows(EntityNotFoundException.class, () -> provinceService.getById(provinceId));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class ProvinceServiceTest {
         when(provinceRepository.findById(any())).thenReturn(optionalProvince);
         when(provinceRepository.save(any())).thenReturn(getProvince());
 
-        provinceService.updateProvince(provinceId, getProvinceDto());
+        provinceService.update(provinceId, getProvinceDto());
 
         verify(provinceRepository, times(1)).save(getProvince());
     }
@@ -124,6 +124,6 @@ public class ProvinceServiceTest {
         Optional<Province> optionalProvince = Optional.empty();
         when(provinceRepository.findById(provinceId)).thenReturn(optionalProvince);
 
-        assertThrows(EntityNotFoundException.class, () -> provinceService.updateProvince(provinceId, getProvinceDto()));
+        assertThrows(EntityNotFoundException.class, () -> provinceService.update(provinceId, getProvinceDto()));
     }
 }

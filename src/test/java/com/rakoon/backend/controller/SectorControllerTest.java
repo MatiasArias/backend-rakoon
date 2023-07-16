@@ -57,7 +57,7 @@ public class SectorControllerTest {
         List<SectorDto> sectors = new ArrayList<>();
         sectors.add(getSectorDto());
 
-        when(sectorService.findAllSectors()).thenReturn(sectors);
+        when(sectorService.findAll()).thenReturn(sectors);
 
         mockMvc.perform(get("/api/sector"))
                 .andExpect(status().isOk());
@@ -67,7 +67,7 @@ public class SectorControllerTest {
     @DisplayName("GET /api/sector/1 - Success")
     void testSectorById() throws Exception {
 
-        when(sectorService.getSectorById(1L)).thenReturn(getSectorDto());
+        when(sectorService.getById(1L)).thenReturn(getSectorDto());
 
         mockMvc.perform(get("/api/sector/1")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -78,7 +78,7 @@ public class SectorControllerTest {
     @WithMockUser(value = "spring-test")
     @DisplayName("POST /api/sector/create - Success")
     void testCreateSector() throws Exception {
-        when(sectorService.createSector(Mockito.eq(getSectorDto()))).thenReturn(getSectorDto());
+        when(sectorService.create(Mockito.eq(getSectorDto()))).thenReturn(getSectorDto());
 
         mockMvc.perform(post("/api/sector/create")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -95,7 +95,7 @@ public class SectorControllerTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(getSectorDto())))
                 .andExpect(status().isOk());
-        Mockito.verify(sectorService,Mockito.times(1)).updateSector(eq(1L),eq(getSectorDto()));
+        Mockito.verify(sectorService,Mockito.times(1)).update(eq(1L),eq(getSectorDto()));
     }
 
     @Test
@@ -104,6 +104,6 @@ public class SectorControllerTest {
     void testDeleteSector() throws Exception {
         mockMvc.perform(delete("/api/sector/delete/1"))
                 .andExpect(status().isNoContent());
-        Mockito.verify(sectorService,Mockito.times(1)).deleteSector(eq(1L));
+        Mockito.verify(sectorService,Mockito.times(1)).delete(eq(1L));
     }
 }

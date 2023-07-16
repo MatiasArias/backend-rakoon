@@ -21,7 +21,7 @@ public class SectorServiceImpl implements SectorService {
     private static final String ID_NOT_FOUND = "Sector not found - id: #";
 
     @Override
-    public SectorDto createSector(SectorDto sectorDto) {
+    public SectorDto create(SectorDto sectorDto) {
         Sector sector = modelMapper.map(sectorDto, Sector.class);
         sectorRepository.save(sector);
         sectorDto = modelMapper.map(sector, SectorDto.class);
@@ -30,14 +30,14 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public List<SectorDto> findAllSectors() {
+    public List<SectorDto> findAll() {
         return sectorRepository.findAll().stream()
                 .map(sector -> modelMapper.map(sector, SectorDto.class))
                 .toList();
     }
 
     @Override
-    public void deleteSector(Long id) {
+    public void delete(Long id) {
         sectorRepository.findById(id)
                 .ifPresentOrElse(sectorFind -> {
                     sectorRepository.delete(sectorFind);
@@ -49,7 +49,7 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public SectorDto getSectorById(Long id) {
+    public SectorDto getById(Long id) {
         return sectorRepository.findById(id)
                 .map(sector -> modelMapper.map(sector, SectorDto.class))
                 .orElseThrow(() -> {
@@ -59,7 +59,7 @@ public class SectorServiceImpl implements SectorService {
     }
 
     @Override
-    public void updateSector(Long id, SectorDto sector) {
+    public void update(Long id, SectorDto sector) {
         sectorRepository.findById(id).ifPresentOrElse(sectorFind -> {
         Sector sectorToUpdate = modelMapper.map(sector, Sector.class);
         sectorRepository.save(sectorToUpdate);

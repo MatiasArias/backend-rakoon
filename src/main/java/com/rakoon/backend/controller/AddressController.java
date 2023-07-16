@@ -21,32 +21,32 @@ public class AddressController {
     @GetMapping
     @Operation(summary = "findAll")
     public ResponseEntity<List<AddressDto>> getAddresses() {
-        return new ResponseEntity<>(addressService.findAllAddresses(), HttpStatus.OK);
+        return new ResponseEntity<>(addressService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "getAddressById")
     public ResponseEntity<AddressDto> getAddressById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(addressService.getAddressById(id), HttpStatus.OK);
+        return new ResponseEntity<>(addressService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @Operation(summary = "createAddress")
     public ResponseEntity<AddressDto> createAddress(@RequestBody AddressDto address) {
-        return new ResponseEntity<>(addressService.createAddress(address), HttpStatus.CREATED);
+        return new ResponseEntity<>(addressService.create(address), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "deleteAddress")
     public ResponseEntity<HttpStatus> deleteAddress(@PathVariable("id") Long id) {
-        addressService.deleteAddress(id);
+        addressService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateAddress")
     public ResponseEntity<HttpStatus> updateAddress(@PathVariable("id") Long id, @RequestBody AddressDto address) {
-        addressService.updateAddress(id, address);
+        addressService.update(id, address);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

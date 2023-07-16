@@ -16,7 +16,7 @@ public class UserServiceImp implements UserService {
     UserRepository userRepository;
 
     @Override
-    public User save(User user) {
+    public User create(User user) {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         User userPersisted = userRepository.save(user);
         log.info(String.format("User created successfully with id #%s", userPersisted.getUserId()));

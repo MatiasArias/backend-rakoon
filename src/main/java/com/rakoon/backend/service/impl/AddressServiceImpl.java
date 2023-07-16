@@ -24,7 +24,7 @@ public class AddressServiceImpl implements AddressService {
     private static final String ID_NOT_FOUND = "Address not found - id: #";
 
     @Override
-    public AddressDto createAddress(AddressDto addressDto) {
+    public AddressDto create(AddressDto addressDto) {
         Address address = modelMapper.map(addressDto, Address.class);
         address.setCity(cityRepository.findOneByName(addressDto.getCity()));
         addressRepository.save(address);
@@ -34,14 +34,14 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressDto> findAllAddresses() {
+    public List<AddressDto> findAll() {
         return addressRepository.findAll().stream()
                 .map(address -> modelMapper.map(address, AddressDto.class))
                 .toList();
     }
 
     @Override
-    public void deleteAddress(Long id) {
+    public void delete(Long id) {
         addressRepository.findById(id)
                 .ifPresentOrElse(addressFind -> {
                     addressRepository.delete(addressFind);
@@ -53,17 +53,17 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressDto getAddressById(Long id) {
+    public AddressDto getById(Long id) {
         return addressRepository.findById(id)
                 .map(address -> modelMapper.map(address, AddressDto.class))
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
-                    throw new EntityNotFoundException(ID_NOT_FOUND + id);
+                    return new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
     }
 
     @Override
-    public void updateAddress(Long id, AddressDto address) {
+    public void update(Long id, AddressDto address) {
         addressRepository.findById(id).ifPresentOrElse(addressFind -> {
             Address addressToUpdate = modelMapper.map(address, Address.class);
             addressRepository.save(addressToUpdate);

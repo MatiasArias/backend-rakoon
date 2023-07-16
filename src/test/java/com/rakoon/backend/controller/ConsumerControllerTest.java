@@ -57,7 +57,7 @@ class ConsumerControllerTest {
     @WithMockUser("spring")
     void createConsumerSuccessfulTest() throws Exception {
 
-        when(consumerService.save(any(ConsumerDto.class))).thenReturn(getConsumerDto());
+        when(consumerService.create(any(ConsumerDto.class))).thenReturn(getConsumerDto());
 
 
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/api/consumer/create")

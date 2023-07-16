@@ -42,7 +42,7 @@ class WorkDayServiceTest {
         WorkDay workDay = modelMapper.map(workDayDto, WorkDay.class);
         when(workDayRepository.save(any())).thenReturn(workDay);
 
-        WorkDayDto createdWorkDay = workDayService.createWorkDay(workDayDto);
+        WorkDayDto createdWorkDay = workDayService.create(workDayDto);
 
         assertEquals(workDayDto.getWorkingDay(), createdWorkDay.getWorkingDay());
     }
@@ -54,7 +54,7 @@ class WorkDayServiceTest {
         workDays.add(getWorkDay());
         when(workDayRepository.findAll()).thenReturn(workDays);
 
-        List<WorkDayDto> workDaysDto = workDayService.findAllWorkDays();
+        List<WorkDayDto> workDaysDto = workDayService.findAll();
 
         assertEquals(workDays.size(), workDaysDto.size());
         assertEquals(getWorkDay().getWorkingDay(), workDaysDto.get(0).getWorkingDay());
@@ -67,7 +67,7 @@ class WorkDayServiceTest {
         Optional<WorkDay> optionalWorkDay = Optional.of(getWorkDay());
         when(workDayRepository.findById(workDayId)).thenReturn(optionalWorkDay);
 
-        workDayService.deleteWorkDay(workDayId);
+        workDayService.delete(workDayId);
 
         verify(workDayRepository, times(1)).delete(getWorkDay());
     }
@@ -79,7 +79,7 @@ class WorkDayServiceTest {
         Optional<WorkDay> optionalWorkDay = Optional.empty();
         when(workDayRepository.findById(workDayId)).thenReturn(optionalWorkDay);
 
-        assertThrows(EntityNotFoundException.class, () -> workDayService.deleteWorkDay(workDayId));
+        assertThrows(EntityNotFoundException.class, () -> workDayService.delete(workDayId));
     }
 
     @Test
@@ -89,7 +89,7 @@ class WorkDayServiceTest {
         Optional<WorkDay> optionalWorkDay = Optional.of(getWorkDay());
         when(workDayRepository.findById(workDayId)).thenReturn(optionalWorkDay);
 
-        WorkDayDto workDayResult = workDayService.getWorkDayById(workDayId);
+        WorkDayDto workDayResult = workDayService.getById(workDayId);
 
         assertEquals(getWorkDayDto().getWorkingDay(), workDayResult.getWorkingDay());
     }
@@ -101,7 +101,7 @@ class WorkDayServiceTest {
         Optional<WorkDay> optionalWorkDay = Optional.empty();
         when(workDayRepository.findById(workDayId)).thenReturn(optionalWorkDay);
 
-        assertThrows(EntityNotFoundException.class, () -> workDayService.getWorkDayById(workDayId));
+        assertThrows(EntityNotFoundException.class, () -> workDayService.getById(workDayId));
     }
 
     @Test
@@ -112,7 +112,7 @@ class WorkDayServiceTest {
         when(workDayRepository.findById(any())).thenReturn(optionalWorkDay);
         when(workDayRepository.save(any())).thenReturn(getWorkDay());
 
-        workDayService.updateWorkDay(workDayId, getWorkDayDto());
+        workDayService.update(workDayId, getWorkDayDto());
 
         verify(workDayRepository, times(1)).save(getWorkDay());
     }
@@ -124,7 +124,7 @@ class WorkDayServiceTest {
         Optional<WorkDay> optionalWorkDay = Optional.empty();
         when(workDayRepository.findById(workDayId)).thenReturn(optionalWorkDay);
 
-        assertThrows(EntityNotFoundException.class, () -> workDayService.updateWorkDay(workDayId, getWorkDayDto()));
+        assertThrows(EntityNotFoundException.class, () -> workDayService.update(workDayId, getWorkDayDto()));
     }
 }
 

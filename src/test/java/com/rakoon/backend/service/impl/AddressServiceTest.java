@@ -46,7 +46,7 @@ class AddressServiceTest {
         when(cityRepository.findOneByName(addressDto.getCity())).thenReturn(address.getCity());
         when(addressRepository.save(any())).thenReturn(address);
 
-        AddressDto createdAddress = addressService.createAddress(addressDto);
+        AddressDto createdAddress = addressService.create(addressDto);
 
         assertEquals(address.getStreet(), createdAddress.getStreet());
     }
@@ -58,7 +58,7 @@ class AddressServiceTest {
         addresses.add(getAddress());
         when(addressRepository.findAll()).thenReturn(addresses);
 
-        List<AddressDto> addressesDto = addressService.findAllAddresses();
+        List<AddressDto> addressesDto = addressService.findAll();
 
         assertEquals(addresses.size(), addressesDto.size());
         assertEquals(getAddress().getStreet(), addressesDto.get(0).getStreet());
@@ -71,7 +71,7 @@ class AddressServiceTest {
         Optional<Address> optionalAddress = Optional.of(getAddress());
         when(addressRepository.findById(addressId)).thenReturn(optionalAddress);
 
-        addressService.deleteAddress(addressId);
+        addressService.delete(addressId);
 
         verify(addressRepository, times(1)).delete(getAddress());
     }
@@ -83,7 +83,7 @@ class AddressServiceTest {
         Optional<Address> optionalAddress = Optional.empty();
         when(addressRepository.findById(addressId)).thenReturn(optionalAddress);
 
-        assertThrows(EntityNotFoundException.class, () -> addressService.deleteAddress(addressId));
+        assertThrows(EntityNotFoundException.class, () -> addressService.delete(addressId));
     }
 
     @Test
@@ -93,7 +93,7 @@ class AddressServiceTest {
         Optional<Address> optionalAddress = Optional.of(getAddress());
         when(addressRepository.findById(addressId)).thenReturn(optionalAddress);
 
-        AddressDto addressResult = addressService.getAddressById(addressId);
+        AddressDto addressResult = addressService.getById(addressId);
 
         assertEquals(getAddressDto().getStreet(), addressResult.getStreet());
     }
@@ -105,7 +105,7 @@ class AddressServiceTest {
         Optional<Address> optionalAddress = Optional.empty();
         when(addressRepository.findById(addressId)).thenReturn(optionalAddress);
 
-        assertThrows(EntityNotFoundException.class, () -> addressService.getAddressById(addressId));
+        assertThrows(EntityNotFoundException.class, () -> addressService.getById(addressId));
     }
 
     @Test
@@ -116,7 +116,7 @@ class AddressServiceTest {
         when(addressRepository.findById(any())).thenReturn(optionalAddress);
         when(addressRepository.save(any())).thenReturn(getAddress());
 
-        addressService.updateAddress(addressId, getAddressDto());
+        addressService.update(addressId, getAddressDto());
 
         verify(addressRepository, times(1)).save(getAddress());
     }
@@ -128,6 +128,6 @@ class AddressServiceTest {
         Optional<Address> optionalAddress = Optional.empty();
         when(addressRepository.findById(addressId)).thenReturn(optionalAddress);
 
-        assertThrows(EntityNotFoundException.class, () -> addressService.updateAddress(addressId, getAddressDto()));
+        assertThrows(EntityNotFoundException.class, () -> addressService.update(addressId, getAddressDto()));
     }
 }

@@ -21,7 +21,7 @@ public class ProvinceServiceImpl implements ProvinceService {
     private static final String ID_NOT_FOUND = "Province not found - id: #";
 
     @Override
-    public ProvinceDto createProvince(ProvinceDto provinceDto) {
+    public ProvinceDto create(ProvinceDto provinceDto) {
         Province province = modelMapper.map(provinceDto, Province.class);
         provinceRepository.save(province);
         ProvinceDto createdProvince = modelMapper.map(province, ProvinceDto.class);
@@ -30,7 +30,7 @@ public class ProvinceServiceImpl implements ProvinceService {
     }
 
     @Override
-    public List<ProvinceDto> findAllProvinces() {
+    public List<ProvinceDto> findAll() {
         List<Province> provinces = provinceRepository.findAll();
         return provinces.stream()
                 .map(province -> modelMapper.map(province, ProvinceDto.class))
@@ -38,7 +38,7 @@ public class ProvinceServiceImpl implements ProvinceService {
     }
 
     @Override
-    public void deleteProvince(Long id) {
+    public void delete(Long id) {
         Province province = provinceRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
@@ -49,7 +49,7 @@ public class ProvinceServiceImpl implements ProvinceService {
     }
 
     @Override
-    public ProvinceDto getProvinceById(Long id) {
+    public ProvinceDto getById(Long id) {
         Province province = provinceRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
@@ -59,7 +59,7 @@ public class ProvinceServiceImpl implements ProvinceService {
     }
 
     @Override
-    public void updateProvince(Long id, ProvinceDto provinceDto) {
+    public void update(Long id, ProvinceDto provinceDto) {
         provinceRepository.findById(id).ifPresentOrElse(establishmentFind -> {
         Province provinceToUpdate = modelMapper.map(provinceDto, Province.class);
         provinceToUpdate.setId(id);

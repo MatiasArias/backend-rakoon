@@ -5,9 +5,9 @@ import com.rakoon.backend.model.view.WorkDayDto;
 import java.util.List;
 
 public interface WorkDayService {
-    WorkDayDto createWorkDay(WorkDayDto workDay);
-    List<WorkDayDto> findAllWorkDays();
-    void deleteWorkDay(Long id);
-    WorkDayDto getWorkDayById(Long id);
-    void updateWorkDay(Long id, WorkDayDto workDay);
+    WorkDayDto create(WorkDayDto workDay);
+    List<WorkDayDto> findAll();
+    void delete(Long id);
+    WorkDayDto getById(Long id);
+    void update(Long id, WorkDayDto workDay);
 }

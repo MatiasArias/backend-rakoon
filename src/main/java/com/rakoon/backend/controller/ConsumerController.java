@@ -19,6 +19,6 @@ public class ConsumerController {
 
     @PostMapping("/create")
     public ResponseEntity<ConsumerDto> createConsumer(@RequestBody ConsumerDto consumerDto){
-        return new ResponseEntity<>(consumerService.save(consumerDto), HttpStatus.CREATED);
+        return new ResponseEntity<>(consumerService.create(consumerDto), HttpStatus.CREATED);
     }
 }

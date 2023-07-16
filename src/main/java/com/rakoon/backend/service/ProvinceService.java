@@ -5,9 +5,9 @@ import com.rakoon.backend.model.view.ProvinceDto;
 import java.util.List;
 
 public interface ProvinceService {
-    ProvinceDto createProvince(ProvinceDto provinceDto);
-    List<ProvinceDto> findAllProvinces();
-    void deleteProvince(Long id);
-    ProvinceDto getProvinceById(Long id);
-    void updateProvince(Long id, ProvinceDto provinceDto);
+    ProvinceDto create(ProvinceDto provinceDto);
+    List<ProvinceDto> findAll();
+    void delete(Long id);
+    ProvinceDto getById(Long id);
+    void update(Long id, ProvinceDto provinceDto);
 }

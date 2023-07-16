@@ -34,26 +34,26 @@ public class EstablishmentController {
     @GetMapping(value = "/{id}")
     @Operation(summary = "getEstablishmentById")
     public ResponseEntity<EstablishmentDto> getEstablishmentById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(establishmentService.getEstablishmentById(id), HttpStatus.OK);
+        return new ResponseEntity<>(establishmentService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @Operation(summary = "createEstablishment")
     public ResponseEntity<EstablishmentDto> createEstablishment(@RequestBody EstablishmentDto establishment) {
-        return new ResponseEntity<>(establishmentService.createEstablishment(establishment), HttpStatus.CREATED);
+        return new ResponseEntity<>(establishmentService.create(establishment), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "deleteEstablishment")
     public ResponseEntity<HttpStatus> deleteEstablishment(@PathVariable("id") Long id) {
-        establishmentService.deleteEstablishment(id);
+        establishmentService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateEstablishment")
     public ResponseEntity<HttpStatus> updateEstablishment(@PathVariable("id") Long id, @RequestBody EstablishmentDto establishment) {
-        establishmentService.updateEstablishment(id, establishment);
+        establishmentService.update(id, establishment);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -21,32 +21,32 @@ public class ProvinceController {
     @GetMapping
     @Operation(summary = "findAll")
     public ResponseEntity<List<ProvinceDto>> getProvinces() {
-        return new ResponseEntity<>( provinceService.findAllProvinces(), HttpStatus.OK);
+        return new ResponseEntity<>( provinceService.findAll(), HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}")
     @Operation(summary = "getProvinceById")
     public ResponseEntity<ProvinceDto> getProvinceById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(provinceService.getProvinceById(id), HttpStatus.OK);
+        return new ResponseEntity<>(provinceService.getById(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
     @Operation(summary = "createProvince")
     public ResponseEntity<ProvinceDto> createProvince(@RequestBody ProvinceDto province) {
-        return new ResponseEntity<>(provinceService.createProvince(province), HttpStatus.CREATED);
+        return new ResponseEntity<>(provinceService.create(province), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @Operation(summary = "deleteProvince")
     public ResponseEntity<HttpStatus> deleteProvince(@PathVariable("id") Long id) {
-        provinceService.deleteProvince(id);
+        provinceService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateProvince")
     public ResponseEntity<HttpStatus> updateProvince(@PathVariable("id") Long id, @RequestBody ProvinceDto province) {
-        provinceService.updateProvince(id, province);
+        provinceService.update(id, province);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

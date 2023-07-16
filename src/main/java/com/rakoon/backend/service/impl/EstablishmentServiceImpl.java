@@ -35,7 +35,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
 
 
     @Override
-    public EstablishmentDto createEstablishment(EstablishmentDto establishmentDto) {
+    public EstablishmentDto create(EstablishmentDto establishmentDto) {
         Establishment establishment = modelMapper.map(establishmentDto, Establishment.class);
         establishmentRepository.save(establishment);
         establishmentDto = modelMapper.map(establishment, EstablishmentDto.class);
@@ -51,7 +51,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     }
 
     @Override
-    public void deleteEstablishment(Long id) {
+    public void delete(Long id) {
         establishmentRepository.findById(id)
                 .ifPresentOrElse(establishmentFind -> {
                     establishmentRepository.delete(establishmentFind);
@@ -63,7 +63,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     }
 
     @Override
-    public EstablishmentDto getEstablishmentById(Long id) {
+    public EstablishmentDto getById(Long id) {
         return establishmentRepository.findById(id)
                 .map(establishment -> modelMapper.map(establishment, EstablishmentDto.class))
                 .orElseThrow(() -> {
@@ -73,11 +73,11 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     }
 
     @Override
-    public void updateEstablishment(Long id, EstablishmentDto establishment) {
+    public void update(Long id, EstablishmentDto establishment) {
         establishmentRepository.findById(id).ifPresentOrElse(establishmentFind -> {
             Establishment establishmentToUpdate = establishmentFind;
             Address address = modelMapper.map(
-                    addressService.createAddress(parseStringToAddress(establishment.getAddressInput())),
+                    addressService.create(parseStringToAddress(establishment.getAddressInput())),
                     Address.class);
             if(establishment.getAddressInput()!=null){establishmentToUpdate.setAddress(address);}
             if(establishment.getIdSector()!=null){establishmentToUpdate.setSector(sectorRepository.getById(establishment.getIdSector()));}
