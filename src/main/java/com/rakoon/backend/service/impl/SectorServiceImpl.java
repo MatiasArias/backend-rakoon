@@ -18,14 +18,14 @@ public class SectorServiceImpl implements SectorService {
     @Autowired
     private SectorRepository sectorRepository;
     private final ModelMapper modelMapper = new ModelMapper();
-    private static final String ID_NOT_FOUND = "Sector not found - id:";
+    private static final String ID_NOT_FOUND = "Sector not found - id: #";
 
     @Override
     public SectorDto createSector(SectorDto sectorDto) {
         Sector sector = modelMapper.map(sectorDto, Sector.class);
         sectorRepository.save(sector);
         sectorDto = modelMapper.map(sector, SectorDto.class);
-        log.info(String.format("Sector %s created successfully", sector.getName()));
+        log.info(String.format("Sector created successfully with id #%s", sectorDto.getId()));
         return sectorDto;
     }
 
@@ -41,7 +41,7 @@ public class SectorServiceImpl implements SectorService {
         sectorRepository.findById(id)
                 .ifPresentOrElse(sectorFind -> {
                     sectorRepository.delete(sectorFind);
-                    log.info("Sector deleted successfully");
+                    log.info(String.format("Sector with id #%s deleted successfully", id));
                 }, () -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
                     throw new EntityNotFoundException(ID_NOT_FOUND + id);
@@ -63,7 +63,7 @@ public class SectorServiceImpl implements SectorService {
         sectorRepository.findById(id).ifPresentOrElse(sectorFind -> {
         Sector sectorToUpdate = modelMapper.map(sector, Sector.class);
         sectorRepository.save(sectorToUpdate);
-        log.info(String.format("Sector %s updated successfully", sectorToUpdate.getName()));
+        log.info(String.format("Sector with id #%s updated successfully", id));
         }, () -> {
             log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
             throw new EntityNotFoundException(ID_NOT_FOUND + id);

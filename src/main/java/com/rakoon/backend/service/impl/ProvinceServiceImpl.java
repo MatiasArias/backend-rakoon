@@ -18,14 +18,14 @@ public class ProvinceServiceImpl implements ProvinceService {
     @Autowired
     private ProvinceRepository provinceRepository;
     private final ModelMapper modelMapper = new ModelMapper();
-    private static final String ID_NOT_FOUND = "Province not found - id:";
+    private static final String ID_NOT_FOUND = "Province not found - id: #";
 
     @Override
     public ProvinceDto createProvince(ProvinceDto provinceDto) {
         Province province = modelMapper.map(provinceDto, Province.class);
         provinceRepository.save(province);
         ProvinceDto createdProvince = modelMapper.map(province, ProvinceDto.class);
-        log.info(String.format("Province %s created successfully", province.getName()));
+        log.info(String.format("Province created successfully with id #%s", createdProvince.getId()));
         return createdProvince;
     }
 
@@ -41,19 +41,19 @@ public class ProvinceServiceImpl implements ProvinceService {
     public void deleteProvince(Long id) {
         Province province = provinceRepository.findById(id)
                 .orElseThrow(() -> {
-                    log.error("Province not found - id: " + id);
-                    return new EntityNotFoundException("Province not found with ID: " + id);
+                    log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
+                    return new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
         provinceRepository.delete(province);
-        log.info("Province deleted successfully");
+        log.info(String.format("Province with id #%s deleted successfully", id));
     }
 
     @Override
     public ProvinceDto getProvinceById(Long id) {
         Province province = provinceRepository.findById(id)
                 .orElseThrow(() -> {
-                    log.error("Province not found - id: " + id);
-                    return new EntityNotFoundException("Province not found with ID: " + id);
+                    log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
+                    return new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
         return modelMapper.map(province, ProvinceDto.class);
     }
@@ -64,7 +64,7 @@ public class ProvinceServiceImpl implements ProvinceService {
         Province provinceToUpdate = modelMapper.map(provinceDto, Province.class);
         provinceToUpdate.setId(id);
         provinceRepository.save(provinceToUpdate);
-        log.info(String.format("Province %s updated successfully", provinceToUpdate.getName()));
+        log.info(String.format("Province with id #%s updated successfully", id));
         }, () -> {
             log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
             throw new EntityNotFoundException(ID_NOT_FOUND + id);

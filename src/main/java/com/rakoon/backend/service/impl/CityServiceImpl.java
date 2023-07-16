@@ -18,14 +18,14 @@ public class CityServiceImpl implements CityService {
     @Autowired
     private CityRepository cityRepository;
     private final ModelMapper modelMapper = new ModelMapper();
-    private static final String ID_NOT_FOUND = "City not found - id:";
+    private static final String ID_NOT_FOUND = "City not found - id: #";
 
     @Override
     public CityDto createCity(CityDto cityDto) {
         City city = modelMapper.map(cityDto, City.class);
         cityRepository.save(city);
         cityDto = modelMapper.map(city, CityDto.class);
-        log.info(String.format("City %s created successfully", city.getName()));
+        log.info(String.format("City created successfully with id #%s", cityDto.getId()));
         return cityDto;
     }
 
@@ -45,7 +45,7 @@ public class CityServiceImpl implements CityService {
                     throw new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
         cityRepository.delete(city);
-        log.info("City deleted successfully");
+        log.info(String.format("City with id #%s deleted successfully", id));
     }
 
     @Override
@@ -64,7 +64,7 @@ public class CityServiceImpl implements CityService {
         City cityToUpdate = modelMapper.map(cityDto, City.class);
         cityToUpdate.setId(id);
         cityRepository.save(cityToUpdate);
-        log.info(String.format("City %s updated successfully", cityToUpdate.getName()));
+        log.info(String.format("City with id #%s updated successfully", id));
         }, () -> {
             log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
             throw new EntityNotFoundException(ID_NOT_FOUND + id);

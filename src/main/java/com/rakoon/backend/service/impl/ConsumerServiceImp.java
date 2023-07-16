@@ -6,6 +6,7 @@ import com.rakoon.backend.model.view.ConsumerDto;
 import com.rakoon.backend.repository.ConsumerRepository;
 import com.rakoon.backend.service.ConsumerService;
 import com.rakoon.backend.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 
 @Service
+@Slf4j
 public class ConsumerServiceImp implements ConsumerService {
 
     ModelMapper modelMapper = new ModelMapper();
@@ -27,6 +29,7 @@ public class ConsumerServiceImp implements ConsumerService {
         Consumer consumerPersisted = saveConsumer(consumerDto);
         saveUser(consumerDto, consumerPersisted);
         consumerDto.setUserId(consumerPersisted.getConsumerId());
+        log.info(String.format("Consumer created successfully with id #%s", consumerPersisted.getConsumerId()));
         return consumerDto;
     }
 

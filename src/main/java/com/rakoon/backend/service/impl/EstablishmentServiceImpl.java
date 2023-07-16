@@ -31,7 +31,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
     @Autowired
     private AddressService addressService;
     private final ModelMapper modelMapper = new ModelMapper();
-    private static final String ID_NOT_FOUND = "Establishment not found - id:";
+    private static final String ID_NOT_FOUND = "Establishment not found - id: #";
 
 
     @Override
@@ -39,7 +39,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
         Establishment establishment = modelMapper.map(establishmentDto, Establishment.class);
         establishmentRepository.save(establishment);
         establishmentDto = modelMapper.map(establishment, EstablishmentDto.class);
-        log.info(String.format("Establishment %s created successfully", establishment.getName()));
+        log.info(String.format("Establishment created successfully with id #%s", establishmentDto.getId()));
         return establishmentDto;
     }
 
@@ -55,7 +55,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
         establishmentRepository.findById(id)
                 .ifPresentOrElse(establishmentFind -> {
                     establishmentRepository.delete(establishmentFind);
-                    log.info("Establishment deleted successfully");
+                    log.info(String.format("Establishment with id #%s deleted successfully", id));
                 }, () -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
                     throw new EntityNotFoundException(ID_NOT_FOUND + id);
@@ -83,7 +83,7 @@ public class EstablishmentServiceImpl implements EstablishmentService {
             if(establishment.getIdSector()!=null){establishmentToUpdate.setSector(sectorRepository.getById(establishment.getIdSector()));}
             if(establishment.getDescription()!=null){establishmentToUpdate.setDescription(establishment.getDescription());}
             establishmentRepository.save(establishmentToUpdate);
-            log.info("Establishment updated successfully");
+            log.info(String.format("Establishment with id #%s updated successfully", id));
         }, () -> {
             log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
             throw new EntityNotFoundException(ID_NOT_FOUND + id);
@@ -98,11 +98,12 @@ public class EstablishmentServiceImpl implements EstablishmentService {
             establishment.setWorkDay(updateWorkDayList(workDayList));
             establishmentRepository.save(establishment);
         });
+        log.info(String.format("Work days of establishment with id #%s updated successfully", idEstablishment));
     }
     public List<WorkDay> updateWorkDayList(List<WorkDayDto> workDayList){
         return workDayList.stream().map(workDayDto -> {
                     WorkDay workDay = workDayRepository.save(modelMapper.map(workDayDto, WorkDay.class));
-                    log.info("WorkDay Created succefully");
+                    log.info(String.format("Work day created succefully with id #%s", workDay.getId()));
                     return workDay;
                 }
         ).toList();

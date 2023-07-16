@@ -18,14 +18,14 @@ public class WorkDayServiceImpl implements WorkDayService {
     @Autowired
     private WorkDayRepository workDayRepository;
     private final ModelMapper modelMapper = new ModelMapper();
-    private static final String ID_NOT_FOUND = "WorkDay not found - id:";
+    private static final String ID_NOT_FOUND = "WorkDay not found - id: #";
 
     @Override
     public WorkDayDto createWorkDay(WorkDayDto workDayDto) {
         WorkDay workDay = modelMapper.map(workDayDto, WorkDay.class);
         workDayRepository.save(workDay);
         workDayDto = modelMapper.map(workDay, WorkDayDto.class);
-        log.info("WorkDay created successfully");
+        log.info(String.format("WorkDay created successfully with id #%s", workDayDto.getId()));
         return workDayDto;
     }
 
@@ -41,7 +41,7 @@ public class WorkDayServiceImpl implements WorkDayService {
         workDayRepository.findById(id)
                 .ifPresentOrElse(workDayFind -> {
                     workDayRepository.delete(workDayFind);
-                    log.info("WorkDay deleted successfully");
+                    log.info(String.format("Work day with id #%s deleted successfully", id));
                 }, () -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
                     throw new EntityNotFoundException(ID_NOT_FOUND + id);
@@ -63,7 +63,7 @@ public class WorkDayServiceImpl implements WorkDayService {
         workDayRepository.findById(id).ifPresentOrElse(sectorFind -> {
         WorkDay workDayToUpdate = modelMapper.map(workDay, WorkDay.class);
         workDayRepository.save(workDayToUpdate);
-        log.info("workDay updated successfully");
+        log.info(String.format("work day with id #%s updated successfully", id));
         }, () -> {
             log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
             throw new EntityNotFoundException(ID_NOT_FOUND + id);

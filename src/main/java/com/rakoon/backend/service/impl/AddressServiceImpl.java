@@ -21,7 +21,7 @@ public class AddressServiceImpl implements AddressService {
     @Autowired
     private CityRepository cityRepository;
     private final ModelMapper modelMapper = new ModelMapper();
-    private static final String ID_NOT_FOUND = "Address not found - id:";
+    private static final String ID_NOT_FOUND = "Address not found - id: #";
 
     @Override
     public AddressDto createAddress(AddressDto addressDto) {
@@ -29,7 +29,7 @@ public class AddressServiceImpl implements AddressService {
         address.setCity(cityRepository.findOneByName(addressDto.getCity()));
         addressRepository.save(address);
         addressDto = modelMapper.map(address, AddressDto.class);
-        log.info("Address created successfully");
+        log.info(String.format("Address created successfully with id #%s", addressDto.getId()));
         return addressDto;
     }
 
@@ -45,7 +45,7 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.findById(id)
                 .ifPresentOrElse(addressFind -> {
                     addressRepository.delete(addressFind);
-                    log.info("Address deleted successfully");
+                    log.info(String.format("Address with id #%s deleted successfully", id));
                 }, () -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
                     throw new EntityNotFoundException(ID_NOT_FOUND + id);
@@ -67,7 +67,7 @@ public class AddressServiceImpl implements AddressService {
         addressRepository.findById(id).ifPresentOrElse(addressFind -> {
             Address addressToUpdate = modelMapper.map(address, Address.class);
             addressRepository.save(addressToUpdate);
-            log.info("Address updated successfully");
+            log.info(String.format("Address with id #%s updated successfully", id));
         }, () -> {
             log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
             throw new EntityNotFoundException(ID_NOT_FOUND + id);
