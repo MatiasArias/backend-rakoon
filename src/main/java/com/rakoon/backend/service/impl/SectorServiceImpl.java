@@ -54,7 +54,7 @@ public class SectorServiceImpl implements SectorService {
                 .map(sector -> modelMapper.map(sector, SectorDto.class))
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
-                    throw new EntityNotFoundException(ID_NOT_FOUND + id);
+                    return new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
     }
 

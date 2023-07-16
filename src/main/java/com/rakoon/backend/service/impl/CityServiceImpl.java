@@ -42,7 +42,7 @@ public class CityServiceImpl implements CityService {
         City city = cityRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
-                    throw new EntityNotFoundException(ID_NOT_FOUND + id);
+                    return new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
         cityRepository.delete(city);
         log.info(String.format("City with id #%s deleted successfully", id));
@@ -53,7 +53,7 @@ public class CityServiceImpl implements CityService {
         City city = cityRepository.findById(id)
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
-                    throw new EntityNotFoundException(ID_NOT_FOUND + id);
+                    return new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
         return modelMapper.map(city, CityDto.class);
     }

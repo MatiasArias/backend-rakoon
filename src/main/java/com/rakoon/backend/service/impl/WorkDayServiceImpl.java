@@ -54,7 +54,7 @@ public class WorkDayServiceImpl implements WorkDayService {
                 .map(workDay -> modelMapper.map(workDay, WorkDayDto.class))
                 .orElseThrow(() -> {
                     log.error(ID_NOT_FOUND + id, new EntityNotFoundException(ID_NOT_FOUND + id));
-                    throw new EntityNotFoundException(ID_NOT_FOUND + id);
+                    return new EntityNotFoundException(ID_NOT_FOUND + id);
                 });
     }
 
