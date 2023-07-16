@@ -1,10 +1,9 @@
-package com.rakoon.backend.service.imp;
+package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.repository.UserRepository;
 import static com.rakoon.backend.util.TestEntityFactory.getUser;
 
-import com.rakoon.backend.service.impl.UserServiceImp;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

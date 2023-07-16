@@ -1,6 +1,6 @@
 package com.rakoon.backend.service;
 
-import com.rakoon.backend.model.views.SectorDto;
+import com.rakoon.backend.model.view.SectorDto;
 
 import java.util.List;
 

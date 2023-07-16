@@ -1,6 +1,6 @@
 package com.rakoon.backend.controller;
 
-import com.rakoon.backend.model.views.WorkDayDto;
+import com.rakoon.backend.model.view.WorkDayDto;
 import com.rakoon.backend.service.WorkDayService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

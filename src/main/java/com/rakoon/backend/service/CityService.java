@@ -1,6 +1,6 @@
 package com.rakoon.backend.service;
 
-import com.rakoon.backend.model.views.CityDto;
+import com.rakoon.backend.model.view.CityDto;
 
 import java.util.List;
 

@@ -9,13 +9,7 @@ import com.rakoon.backend.model.entity.Sector;
 import com.rakoon.backend.model.entity.User;
 import com.rakoon.backend.model.entity.WorkDay;
 import com.rakoon.backend.model.entity.WorkingDay;
-import com.rakoon.backend.model.view.ConsumerDto;
-import com.rakoon.backend.model.views.AddressDto;
-import com.rakoon.backend.model.views.CityDto;
-import com.rakoon.backend.model.views.EstablishmentDto;
-import com.rakoon.backend.model.views.ProvinceDto;
-import com.rakoon.backend.model.views.SectorDto;
-import com.rakoon.backend.model.views.WorkDayDto;
+import com.rakoon.backend.model.view.*;
 import com.rakoon.backend.security.AuthCredentials;
 import com.rakoon.backend.security.UserDetailsImpl;
 import org.springframework.context.annotation.Bean;
@@ -77,11 +71,11 @@ public class TestEntityFactory {
                 .build();
     }
     public static List<WorkDay> getWorkDayList(){
-        List list = new ArrayList<>();
+        List<WorkDay> list = new ArrayList<>();
         list.add(getWorkDay());
         return list;
     }public static List<WorkDayDto> getWorkDayDtoList(){
-        List list = new ArrayList<>();
+        List<WorkDayDto> list = new ArrayList<>();
         list.add(getWorkDayDto());
         return list;
     }
@@ -183,6 +177,22 @@ public class TestEntityFactory {
                 .numberStreet("912")
                 .floor("3")
                 .numberApartment("7")
+                .build();
+    }
+    public static PackCardDto getPackCardDto(){
+        return PackCardDto.builder()
+                .id(1L)
+                .templateName("Pack Sorpresa")
+                .templateImage("url.image.sorpresa")
+                .establishmentName("Ala Manchada")
+                .establishmentProfileImage("url.image.profile")
+                .sectorName("Resto Bar")
+                .qualificationEstablishment(4.3)
+                .timePickUpTo("20:00")
+                .timePickUpFrom("16:00")
+                .packPrice(450.0)
+                .packDiscountRate(12.3)
+                .quantityPacksAvailable(4L)
                 .build();
     }
 }

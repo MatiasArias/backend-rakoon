@@ -12,8 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class TokenUtils {
-    private final static String ACCESS_TOKEN_SECRET = "mzwTYSJd?bHmZ7sY!wR3LKLkExjzDzI1WU8lRvq1uyCc0sGhsihWuSqPt5EdNwtL";
-    private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
+
+    private TokenUtils() {
+        throw new IllegalStateException("Utility class");
+    }
+    private static final String ACCESS_TOKEN_SECRET = "mzwTYSJd?bHmZ7sY!wR3LKLkExjzDzI1WU8lRvq1uyCc0sGhsihWuSqPt5EdNwtL";
+    private static final Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;
 
     public static String createToken(String username, String email){
         long expirationTime = ACCESS_TOKEN_VALIDITY_SECONDS*1_000;

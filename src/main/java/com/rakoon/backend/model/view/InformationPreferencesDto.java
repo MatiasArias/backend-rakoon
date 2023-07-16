@@ -1,4 +1,4 @@
-package com.rakoon.backend.model.views;
+package com.rakoon.backend.model.view;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.rakoon.backend.controller;
 
-import com.rakoon.backend.model.views.AddressDto;
+import com.rakoon.backend.model.view.AddressDto;
 import com.rakoon.backend.service.AddressService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

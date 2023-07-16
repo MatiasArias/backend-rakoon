@@ -1,7 +1,7 @@
 package com.rakoon.backend.service.impl;
 
 import com.rakoon.backend.model.entity.Province;
-import com.rakoon.backend.model.views.ProvinceDto;
+import com.rakoon.backend.model.view.ProvinceDto;
 import com.rakoon.backend.repository.ProvinceRepository;
 import com.rakoon.backend.service.ProvinceService;
 import jakarta.persistence.EntityNotFoundException;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -35,7 +34,7 @@ public class ProvinceServiceImpl implements ProvinceService {
         List<Province> provinces = provinceRepository.findAll();
         return provinces.stream()
                 .map(province -> modelMapper.map(province, ProvinceDto.class))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Override
