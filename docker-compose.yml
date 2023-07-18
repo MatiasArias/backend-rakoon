@@ -11,7 +11,7 @@ services:
     # creo las variables de entorno para poder ingresar
     environment:
       POSTGRES_DB: rakoon-db
-      POSTGRES_USER: postgres
+      POSTGRES_USER: rakoon
       POSTGRES_PASSWORD: postgres
     #cre un volumen que es un volumen nombrado que luego puese ser usado por varias apps
     volumes:
