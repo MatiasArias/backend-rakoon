@@ -19,16 +19,14 @@ services:
 
   back:
     # creo la imagen basandome en el dockerfile que cree
+    container_name: rakoon-back
     build:
       dockerfile: Dockerfile
       context: ./
-    container_name: rakoon-back
-    # corre dentro del contenedor lo que esta en el scrip run.sh
-    command: sh run.sh
-    working_dir: /code
     # crea un volumen del proyecto en el directorio de trabajo /code para que los cambios se guarden solos
+    image: bitminds:local
     volumes:
-      - ./:/code
+      # - ./:/code
       - ./.m2:/root/.m2
     # creo las variables de entorno para conectar el back a una db
     environment:

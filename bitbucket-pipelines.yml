@@ -1,0 +1,44 @@
+#  Template maven-build
+
+#  This template allows you to test and build your Java project with Maven.
+#  The workflow allows running tests, code checkstyle and security scans on the default branch.
+
+# Prerequisites: pom.xml and appropriate project structure should exist in the repository.
+image: maven:3.6.3
+
+pipelines:
+  branches:
+
+    develop:
+      - step:
+          name: compile and clean verify
+          image: maven:3.6.3-openjdk-17
+          services:
+            - postgres
+          script:
+            - mvn clean verify
+      - step:
+          name: Deploy
+          services:
+            - docker
+          script:
+            # Login to dockerhub
+            - docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PASSWORD
+            # Building new release
+            - docker build --cache-from bitminds/rakoon:latest --tag bitminds:0.0.1-alpha .
+            # Tag new release
+            - docker tag bitminds:0.0.1-alpha bitminds/rakoon:0.0.1-alpha
+            - docker tag bitminds:0.0.1-alpha bitminds/rakoon:latest
+            # Push
+            - docker push bitminds/rakoon:0.0.1-alpha
+            - docker push bitminds/rakoon:latest
+
+# definitions:
+#   services:
+#     postgres:
+#       image: postgres:15.2-alpine
+#       variables:
+#         POSTGRES_DB: $POSTGRES_DB
+#         POSTGRES_USER: $POSTGRES_USER
+#         POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+#         POSTGRES_HOST: $POSTGRES_HOST
