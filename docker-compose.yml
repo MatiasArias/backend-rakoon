@@ -32,7 +32,7 @@ services:
     environment:
       SPRING_JPA_SHOW_SQL: true
       PG_PASS: postgres
-      PG_HOST: db
+      POSTGRES_HOST: db
     ports:
       - 8080:8080
       - 35729:35729 # este puerto es usado por el servidor de livereload en la aplicación
