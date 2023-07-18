@@ -12,7 +12,7 @@ services:
     environment:
       POSTGRES_DB: rakoon-db
       POSTGRES_USER: rakoon
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: rakoon-pass
     #cre un volumen que es un volumen nombrado que luego puese ser usado por varias apps
     volumes:
       - db_data_rakoon:/var/lib/postgresql/data
