@@ -40,5 +40,6 @@ public class Establishment {
     private String profileImage;
     @Column(name="cover_image")
     private String coverImage;
+    private boolean hasDelivery;
 }
 
