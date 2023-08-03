@@ -16,6 +16,6 @@ public class EstablishmentCardDto {
     private String establishmentCoverImage;
     private double distance;
     private double establishmentRating;
-    private Long availability;
+    private boolean availability;
     private boolean isFavorite;
 }

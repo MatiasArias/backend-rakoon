@@ -43,7 +43,8 @@ public class Query {
             "est.coverImage as establishmentCoverImage," +
             "1.2 as distance," +
             "(SELECT AVG(val.stars) FROM Valuation val WHERE val.establishment.id = est.id) as establishmentRating," +
-            "(SELECT COUNT(pack.id) FROM Pack pack WHERE pack.establishment.id = est.id) as availability," +
-            "false as isFavorite) " +
+            "CASE WHEN (SELECT COUNT(pack.id) FROM Pack pack WHERE pack.establishment.id = est.id) > 0 THEN true ELSE false END as availability," +
+            "false as isFavorite" +
+            ")" +
             "FROM Establishment est";
 }
