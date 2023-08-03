@@ -20,4 +20,6 @@ public class TemplatePack {
     private String description;
     @Column(name = "template_image")
     private String templateImage;
+    @ManyToOne
+    private Establishment establishment;
 }

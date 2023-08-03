@@ -24,7 +24,7 @@ public class WebSecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http, AuthenticationManager authManager)throws Exception{
-
+        String h2ConsolePath = "spring.h2.console.path";
         JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
         jwtAuthenticationFilter.setAuthenticationManager(authManager);
         jwtAuthenticationFilter.setFilterProcessesUrl("/api/users/login");
@@ -32,6 +32,7 @@ public class WebSecurityConfig {
                 .authorizeRequests().requestMatchers(req ->
                         (req.getRequestURI().contains("signup")
                                 || (req.getMethod().equals(HttpMethod.GET.toString()))
+                                || req.getRequestURI().contains("h2-console")
                                 || req.getRequestURI().contains("/api/consumer/create")))
                 .permitAll()
                 .anyRequest()
