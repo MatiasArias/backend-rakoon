@@ -1,5 +1,6 @@
 package com.rakoon.backend.service;
 
+import com.rakoon.backend.model.view.EstablishmentCardDto;
 import com.rakoon.backend.model.view.EstablishmentDto;
 import com.rakoon.backend.model.view.WorkDayDto;
 
@@ -12,4 +13,5 @@ public interface EstablishmentService {
     EstablishmentDto getById(Long id);
     void update(Long id, EstablishmentDto establishment);
     void updateWorkDayEstablishment(Long idEstablishment,List<WorkDayDto> workDayList);
+    List<EstablishmentCardDto> getEstablishmentCardInfo();
 }
