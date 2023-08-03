@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
+
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ import static com.rakoon.backend.util.TestEntityFactory.getPackCardDto;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ActiveProfiles("test")
 class PackServiceImplTest {
 
     @Mock
