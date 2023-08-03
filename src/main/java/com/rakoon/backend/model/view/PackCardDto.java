@@ -14,16 +14,23 @@ public class PackCardDto {
     //Template Data
     private String templateName;
     private String templateImage;
+    private String templateDescription;
     //Establishment Data
     private String establishmentName;
     private String establishmentProfileImage;
     private String sectorName;
     private double qualificationEstablishment;
+    private String establishmentStreet;
+    private String establishmentNumberStreet;
+    private String establishmentCity;
+    private String establishmentProvince;
+    private boolean establishmentDelivery;
     //WorkDay Data
     private String timePickUpFrom;
     private String timePickUpTo;
     //Package Data
-    private double packPrice;
+    private double priceWithDiscount;
+    private double priceWithoutDiscount;
     private double packDiscountRate;
     private Long quantityPacksAvailable;
 }

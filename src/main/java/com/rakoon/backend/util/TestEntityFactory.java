@@ -190,7 +190,8 @@ public class TestEntityFactory {
                 .qualificationEstablishment(4.3)
                 .timePickUpTo("20:00")
                 .timePickUpFrom("16:00")
-                .packPrice(450.0)
+                .priceWithoutDiscount(600.0)
+                .priceWithDiscount(528.0)
                 .packDiscountRate(12.3)
                 .quantityPacksAvailable(4L)
                 .build();
