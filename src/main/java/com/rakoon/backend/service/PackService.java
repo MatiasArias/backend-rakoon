@@ -7,5 +7,5 @@ import java.util.List;
 public interface PackService {
     List<PackCardDto> getPackCardInfo();
 
-    List<PackByTemplateDto> getPackEnabledByTemplate();
+    List<PackByTemplateDto> getPackEnabledByTemplate(Long idEstablishment);
 }

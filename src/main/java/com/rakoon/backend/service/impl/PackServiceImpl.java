@@ -29,9 +29,8 @@ public class PackServiceImpl implements PackService {
     }
 
     @Override
-    public List<PackByTemplateDto> getPackEnabledByTemplate() {
-        packRepository.findAllTemplateByPackagesEnabled().stream().peek(System.out::println);
-        return packRepository.findAllTemplateByPackagesEnabled();
+    public List<PackByTemplateDto> getPackEnabledByTemplate(Long idEstablishment) {
+        return packRepository.findAllTemplateByPackagesEnabled(idEstablishment);
     }
 
     private Long getNextId(){

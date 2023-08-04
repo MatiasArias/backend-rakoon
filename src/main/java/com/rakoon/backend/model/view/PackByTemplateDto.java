@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PackByTemplateDto {
     private String name;
-    private String price;
-    private Integer totalPack;
+    private Double price;
+    private Long totalPack;
 }

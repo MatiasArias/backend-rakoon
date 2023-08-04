@@ -37,13 +37,13 @@ public class Query {
             "city.name, province.name, sector.name, wd.timePickUpFrom, wd.timePickUpTo, pack.actualPrice, pack.previousPrice, pack.discountRate, est.id";
 
     public static final String ENABLE_PACKAGES = "SELECT new com.rakoon.backend.model.view.PackByTemplateDto( " +
-            "COUNT(pack.actualPrice) as totalPacks, " +
+            "COUNT(pack.id) as totalPack, " +
             "temp.name as name, " +
-            "pack.actualPrice as price ) " +
-            "FROM Pack pack " +
-            "INNER JOIN pack.template temp " +
+            "temp.actualPrice as price ) " +
+            "FROM TemplatePack temp " +
+            "INNER JOIN Pack pack ON pack.template = temp " +
             "INNER JOIN pack.establishment est " +
             "WHERE est.id = :idEstablishment " +
-            "GROUP BY temp.name";
+            "GROUP BY temp.name, temp.actualPrice";
 
 }

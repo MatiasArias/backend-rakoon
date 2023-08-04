@@ -1,12 +1,10 @@
 package com.rakoon.backend.service.impl;
 
-import com.rakoon.backend.model.view.PackByTemplateDto;
 import com.rakoon.backend.model.view.PackCardDto;
 import com.rakoon.backend.repository.PackRepository;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -22,10 +20,10 @@ import static org.mockito.Mockito.when;
 @AutoConfigureMockMvc
 class PackServiceImplTest {
 
-    @Mock
+    @Autowired
     private PackRepository packRepository;
 
-    @InjectMocks
+    @Autowired
     private PackServiceImpl packService;
 
     @Test
@@ -37,13 +35,5 @@ class PackServiceImplTest {
         when(packRepository.findAllCardInformationPackages()).thenReturn(packCardDtoList);
 
         assertEquals(packCardDtoList.size(), packService.getPackCardInfo().size());
-    }
-
-    @Test
-    void getPackByTemplate(){
-        List<PackByTemplateDto> packs = packService.getPackEnabledByTemplate();
-        for (PackByTemplateDto pack : packs ) {
-            System.out.println(pack.getName());
-        }
     }
 }
