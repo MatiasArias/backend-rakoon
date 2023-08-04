@@ -14,6 +14,7 @@ import static com.rakoon.backend.util.TestEntityFactory.getUser;
 
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
+import org.springframework.test.context.ActiveProfiles;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -21,6 +22,7 @@ import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
+@ActiveProfiles("test")
 class ConsumerServiceImpTest {
     private static final ModelMapper modelMapper = new ModelMapper();
 
