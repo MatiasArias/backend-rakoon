@@ -1,10 +1,12 @@
 package com.rakoon.backend.controller;
 
+import com.rakoon.backend.model.view.PackByTemplateDto;
 import com.rakoon.backend.model.view.PackCardDto;
 import com.rakoon.backend.service.PackService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,5 +27,10 @@ public class PackController {
     @Operation(summary = "getPackCardInformation")
     public ResponseEntity<List<PackCardDto>> getPackCardInfo() {
         return new ResponseEntity<>(packService.getPackCardInfo(), HttpStatus.OK);
+    }
+    @GetMapping("/enable/{idEstablishment}")
+    @Operation(summary = "getPackCardInformation")
+    public ResponseEntity<List<PackByTemplateDto>> getTemplatesEnabled(@Param("idEstablishment") Long idEstablishment) {
+        return new ResponseEntity<>(packService.getPackEnabledByTemplate(idEstablishment), HttpStatus.OK);
     }
 }

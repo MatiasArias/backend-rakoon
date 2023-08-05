@@ -20,4 +20,10 @@ public class TemplatePack {
     private String description;
     @Column(name = "template_image")
     private String templateImage;
+    @ManyToOne
+    private Establishment establishment;
+    @Column(name = "previous_price")
+    private double previousPrice;
+    @Column(name = "actual_price")
+    private double actualPrice;
 }

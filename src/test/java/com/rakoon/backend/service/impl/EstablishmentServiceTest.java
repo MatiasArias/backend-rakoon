@@ -22,6 +22,7 @@ import java.util.Optional;
 import static com.rakoon.backend.util.TestEntityFactory.getAddressDto;
 import static com.rakoon.backend.util.TestEntityFactory.getEstablishment;
 import static com.rakoon.backend.util.TestEntityFactory.getEstablishmentDto;
+import static com.rakoon.backend.util.TestEntityFactory.getWorkDay;
 import static com.rakoon.backend.util.TestEntityFactory.getWorkDayDtoList;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -152,8 +153,8 @@ public class EstablishmentServiceTest {
         Long establishmentId = getEstablishment().getId();
         Optional<Establishment> optionalEstablishment = Optional.of(getEstablishment());
         when(establishmentRepository.findById(establishmentId)).thenReturn(optionalEstablishment);
-
+        when(workDayRepository.save(any())).thenReturn(getWorkDay());
         establishmentService.updateWorkDayEstablishment(establishmentId,getWorkDayDtoList());
-        verify(establishmentRepository, times(0)).save(getEstablishment());
+        verify(workDayRepository, times(1)).save(any());
     }
 }
