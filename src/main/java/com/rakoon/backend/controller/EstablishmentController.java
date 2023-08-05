@@ -1,5 +1,6 @@
 package com.rakoon.backend.controller;
 
+import com.rakoon.backend.model.view.EstablishmentCardDto;
 import com.rakoon.backend.model.view.EstablishmentDto;
 import com.rakoon.backend.service.EstablishmentService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -55,6 +56,12 @@ public class EstablishmentController {
     public ResponseEntity<HttpStatus> updateEstablishment(@PathVariable("id") Long id, @RequestBody EstablishmentDto establishment) {
         establishmentService.update(id, establishment);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("get/card-info")
+    @Operation(summary = "getEstablishmentCardInfo")
+    public ResponseEntity<List<EstablishmentCardDto>> getEstablishmentCardInfo() {
+        return new ResponseEntity<>(establishmentService.getEstablishmentCardInfo(), HttpStatus.OK);
     }
 }
 
