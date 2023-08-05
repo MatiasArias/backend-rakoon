@@ -47,4 +47,14 @@ public class Query {
             "false as isFavorite" +
             ")" +
             "FROM Establishment est";
+    public static final String ENABLE_PACKAGES = "SELECT new com.rakoon.backend.model.view.PackByTemplateDto( " +
+            "COUNT(pack.id) as totalPack, " +
+            "temp.name as name, " +
+            "temp.actualPrice as price ) " +
+            "FROM TemplatePack temp " +
+            "INNER JOIN Pack pack ON pack.template = temp " +
+            "INNER JOIN pack.establishment est " +
+            "WHERE est.id = :idEstablishment " +
+            "GROUP BY temp.name, temp.actualPrice";
+    
 }

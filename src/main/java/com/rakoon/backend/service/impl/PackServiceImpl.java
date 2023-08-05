@@ -1,5 +1,6 @@
 package com.rakoon.backend.service.impl;
 
+import com.rakoon.backend.model.view.PackByTemplateDto;
 import com.rakoon.backend.model.view.PackCardDto;
 import com.rakoon.backend.repository.PackRepository;
 import com.rakoon.backend.service.PackService;
@@ -25,6 +26,11 @@ public class PackServiceImpl implements PackService {
                     return packCardDto;
                 })
                 .toList();
+    }
+
+    @Override
+    public List<PackByTemplateDto> getPackEnabledByTemplate(Long idEstablishment) {
+        return packRepository.findAllTemplateByPackagesEnabled(idEstablishment);
     }
 
     private Long getNextId(){
