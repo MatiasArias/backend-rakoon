@@ -39,10 +39,11 @@ public class TemplatePackController {
 
     @PutMapping("/update/{id}")
     @Operation(summary = "updateTemplate")
-    public ResponseEntity<TemplatePackDto> updateTemplate(@RequestBody TemplatePackDto template, @PathVariable("id") Long id) {
-        return new ResponseEntity<>(templatePackService.update(id, template), HttpStatus.OK);
+    public ResponseEntity<HttpStatus> updateTemplate(@RequestBody TemplatePackDto template, @PathVariable("id") Long id) {
+        templatePackService.update(id, template);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
     @DeleteMapping("delete/{id}")
     @Operation(summary = "deleteTemplate")
     public ResponseEntity<HttpStatus> deleteTemplate(@PathVariable("id") Long id){

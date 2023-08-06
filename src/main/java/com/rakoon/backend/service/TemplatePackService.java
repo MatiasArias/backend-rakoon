@@ -10,6 +10,6 @@ public interface TemplatePackService {
     List<TemplatePackDto> findAll();
     TemplatePackDto getById(Long id);
     void delete(Long id);
-    TemplatePackDto update(Long id, TemplatePackDto template);
+    void update(Long id, TemplatePackDto template);
     TemplatePackDto create(TemplatePackDto template);
 }
