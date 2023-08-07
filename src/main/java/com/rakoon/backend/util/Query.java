@@ -41,8 +41,8 @@ public class Query {
             "temp.name as name, " +
             "temp.actualPrice as price ) " +
             "FROM TemplatePack temp " +
-            "INNER JOIN Pack pack ON pack.template = temp " +
-            "INNER JOIN pack.establishment est " +
+            "LEFT JOIN Pack pack ON pack.template = temp " +
+            "LEFT JOIN temp.establishment est " +
             "WHERE est.id = :idEstablishment " +
             "GROUP BY temp.name, temp.actualPrice";
 
