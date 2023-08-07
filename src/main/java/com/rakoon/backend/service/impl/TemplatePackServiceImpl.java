@@ -1,5 +1,6 @@
 package com.rakoon.backend.service.impl;
 
+import com.rakoon.backend.model.entity.Establishment;
 import com.rakoon.backend.model.entity.TemplatePack;
 import com.rakoon.backend.model.view.TemplatePackDto;
 import com.rakoon.backend.repository.TemplatePackRepository;
@@ -8,14 +9,20 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Slf4j
+@Service
 public class TemplatePackServiceImpl implements TemplatePackService {
 
     @Autowired
     private TemplatePackRepository templatePackRepository;
+    @Autowired
+    private PackServiceImpl packService;
+    @Autowired
+    private EstablishmentServiceImpl establishmentService;
     private ModelMapper modelMapper = new ModelMapper();
     private static final String ID_NOT_FOUND = "Template not found - id: #";
 
@@ -38,6 +45,7 @@ public class TemplatePackServiceImpl implements TemplatePackService {
 
     @Override
     public void delete(Long id) {
+        packService.deleteTemplateRerencedByTemplateId(id);
         templatePackRepository.findById(id)
                 .ifPresentOrElse(templateFind -> {
                     templatePackRepository.delete(templateFind);
@@ -63,8 +71,9 @@ public class TemplatePackServiceImpl implements TemplatePackService {
     @Override
     public TemplatePackDto create(TemplatePackDto templateDto) {
         TemplatePack template = modelMapper.map(templateDto, TemplatePack.class);
+        template.setEstablishment(
+                modelMapper.map(establishmentService.getById(templateDto.getEstablishmentId()), Establishment.class));
         templatePackRepository.save(template);
-        templateDto = modelMapper.map(template, TemplatePackDto.class);
         log.info(String.format("Template created successfully with id #%s", templateDto.getId()));
         return templateDto;
     }

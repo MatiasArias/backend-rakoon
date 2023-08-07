@@ -1,6 +1,5 @@
 package com.rakoon.backend.model.view;
 
-import com.rakoon.backend.model.entity.Establishment;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,7 +14,7 @@ public class TemplatePackDto {
     private String name;
     private String description;
     private String templateImage;
-    private Establishment establishment;
-    private double previousPrice;
-    private double actualPrice;
+    private Long establishmentId;
+    private Double previousPrice;
+    private Double actualPrice;
 }
