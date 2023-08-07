@@ -23,7 +23,7 @@ public class TemplatePack {
     @ManyToOne
     private Establishment establishment;
     @Column(name = "previous_price")
-    private double previousPrice;
+    private Double previousPrice;
     @Column(name = "actual_price")
-    private double actualPrice;
+    private Double actualPrice;
 }

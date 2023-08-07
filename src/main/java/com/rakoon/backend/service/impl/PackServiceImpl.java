@@ -33,6 +33,16 @@ public class PackServiceImpl implements PackService {
         return packRepository.findAllTemplateByPackagesEnabled(idEstablishment);
     }
 
+    @Override
+    public void deleteTemplateRerencedByTemplateId(Long id){
+        packRepository.findAll().stream()
+                .filter(pack -> pack.getTemplate().getId().equals(id))
+                .forEach(pack -> {
+                    pack.setTemplate(null);
+                    packRepository.save(pack);
+                });
+    }
+
     private Long getNextId(){
         return this.idIncrementor++;
     }

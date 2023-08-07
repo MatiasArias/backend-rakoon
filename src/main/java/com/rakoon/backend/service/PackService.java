@@ -8,4 +8,5 @@ public interface PackService {
     List<PackCardDto> getPackCardInfo();
 
     List<PackByTemplateDto> getPackEnabledByTemplate(Long idEstablishment);
+    void deleteTemplateRerencedByTemplateId(Long id);
 }
