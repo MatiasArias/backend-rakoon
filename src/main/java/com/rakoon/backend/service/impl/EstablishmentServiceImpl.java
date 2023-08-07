@@ -4,6 +4,7 @@ import com.rakoon.backend.model.entity.Address;
 import com.rakoon.backend.model.entity.Establishment;
 import com.rakoon.backend.model.entity.WorkDay;
 import com.rakoon.backend.model.view.AddressDto;
+import com.rakoon.backend.model.view.EstablishmentCardDto;
 import com.rakoon.backend.model.view.EstablishmentDto;
 import com.rakoon.backend.model.view.WorkDayDto;
 import com.rakoon.backend.repository.EstablishmentRepository;
@@ -115,6 +116,11 @@ public class EstablishmentServiceImpl implements EstablishmentService {
                 .numberStreet(splitAddress[1])
                 .city(splitAddress[2])
                 .build();
+    }
+
+    @Override
+    public List<EstablishmentCardDto> getEstablishmentCardInfo(){
+        return establishmentRepository.findAllEstablishmentCardData();
     }
 
 }
