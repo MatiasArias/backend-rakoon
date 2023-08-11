@@ -1,12 +1,10 @@
 package com.rakoon.backend.controller;
 
 import com.rakoon.backend.model.view.PackCardDto;
-import com.rakoon.backend.service.PackService;
-import com.rakoon.backend.service.ProvinceService;
+import com.rakoon.backend.service.impl.PackServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,12 +13,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import static com.rakoon.backend.util.TestEntityFactory.getPackCardDto;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static com.rakoon.backend.util.TestEntityFactory.getPackCardDto;
+import static org.mockito.Mockito.when;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -36,7 +34,7 @@ class PackControllerTest {
     private WebApplicationContext context;
 
     @MockBean
-    private PackService packService;
+    private PackServiceImpl packService;
 
     @BeforeEach
     public void setUp(){

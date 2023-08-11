@@ -2,7 +2,7 @@ package com.rakoon.backend.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rakoon.backend.model.view.EstablishmentDto;
-import com.rakoon.backend.service.EstablishmentService;
+import com.rakoon.backend.service.impl.EstablishmentServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -39,7 +39,7 @@ public class EstablishmentControllerTest {
     @Autowired
     private WebApplicationContext context;
     @MockBean
-    private EstablishmentService establishmentService;
+    private EstablishmentServiceImpl establishmentService;
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -52,6 +52,7 @@ public class EstablishmentControllerTest {
     }
 
     @Test
+    @WithMockUser(value = "spring-test")
     @DisplayName("GET /api/establishment - Success")
     void testGetEstablishments() throws Exception {
 
@@ -65,6 +66,7 @@ public class EstablishmentControllerTest {
     }
 
     @Test
+    @WithMockUser(value = "spring-test")
     @DisplayName("GET /api/establishment/1 - Success")
     void testEstablishmentById() throws Exception {
 
