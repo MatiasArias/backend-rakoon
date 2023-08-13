@@ -74,6 +74,7 @@ public class TemplatePackServiceImpl implements TemplatePackService {
         template.setEstablishment(
                 modelMapper.map(establishmentService.getById(templateDto.getEstablishmentId()), Establishment.class));
         templatePackRepository.save(template);
+        templateDto.setId(template.getId());
         log.info(String.format("Template created successfully with id #%s", templateDto.getId()));
         return templateDto;
     }
