@@ -60,6 +60,7 @@ public class TemplatePackServiceImpl implements TemplatePackService {
     public void update(Long id, TemplatePackDto template) {
         templatePackRepository.findById(id).ifPresentOrElse(templateFind -> {
             TemplatePack templateToUpdate = modelMapper.map(template, TemplatePack.class);
+            templateToUpdate.setId(templateFind.getId());
             templatePackRepository.save(templateToUpdate);
             log.info(String.format("Template with id #%s updated successfully", id));
         }, () -> {
