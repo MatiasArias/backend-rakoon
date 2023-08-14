@@ -1,14 +1,6 @@
 package com.rakoon.backend.util;
 
-import com.rakoon.backend.model.entity.Address;
-import com.rakoon.backend.model.entity.City;
-import com.rakoon.backend.model.entity.Consumer;
-import com.rakoon.backend.model.entity.Establishment;
-import com.rakoon.backend.model.entity.Province;
-import com.rakoon.backend.model.entity.Sector;
-import com.rakoon.backend.model.entity.User;
-import com.rakoon.backend.model.entity.WorkDay;
-import com.rakoon.backend.model.entity.WorkingDay;
+import com.rakoon.backend.model.entity.*;
 import com.rakoon.backend.model.view.*;
 import com.rakoon.backend.security.AuthCredentials;
 import com.rakoon.backend.security.UserDetailsImpl;
@@ -194,6 +186,27 @@ public class TestEntityFactory {
                 .priceWithDiscount(528.0)
                 .packDiscountRate(12.3)
                 .quantityPacksAvailable(4L)
+                .build();
+    }
+    public static TemplatePackDto getTemplatePackDto() {
+        return TemplatePackDto.builder()
+                .name("Pack prueba")
+                .description("Descripcion prueba")
+                .templateImage("template.image")
+                .actualPrice(1000.80)
+                .previousPrice(1200.0)
+                .establishmentId(1L)
+                .build();
+    }
+    public static TemplatePack getTemplatePack() {
+        return TemplatePack.builder()
+                .id(9L)
+                .name("Pack prueba")
+                .description("Descripcion prueba")
+                .templateImage("template.image")
+                .actualPrice(1000.80)
+                .previousPrice(1200.0)
+                .establishment(getEstablishment())
                 .build();
     }
 }
