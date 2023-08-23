@@ -11,30 +11,28 @@ services:
     # creo las variables de entorno para poder ingresar
     environment:
       POSTGRES_DB: rakoon-db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: rakoon
+      POSTGRES_PASSWORD: rakoon-pass
     #cre un volumen que es un volumen nombrado que luego puese ser usado por varias apps
     volumes:
       - db_data_rakoon:/var/lib/postgresql/data
 
   back:
     # creo la imagen basandome en el dockerfile que cree
+    container_name: rakoon-back
     build:
       dockerfile: Dockerfile
       context: ./
-    container_name: rakoon-back
-    # corre dentro del contenedor lo que esta en el scrip run.sh
-    command: sh run.sh
-    working_dir: /code
     # crea un volumen del proyecto en el directorio de trabajo /code para que los cambios se guarden solos
+    image: bitminds:local
     volumes:
-      - ./:/code
+      # - ./:/code
       - ./.m2:/root/.m2
     # creo las variables de entorno para conectar el back a una db
     environment:
       SPRING_JPA_SHOW_SQL: true
       PG_PASS: postgres
-      PG_HOST: db
+      POSTGRES_HOST: db
     ports:
       - 8080:8080
       - 35729:35729 # este puerto es usado por el servidor de livereload en la aplicación
